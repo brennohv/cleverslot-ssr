@@ -1,19 +1,23 @@
 import { CurrencyPipe, isPlatformBrowser } from '@angular/common';
 import {
+  afterNextRender,
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   inject,
+  Injector,
+  OnInit,
   PLATFORM_ID,
   signal,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { TranslocoPipe, TranslocoDirective } from '@jsverse/transloco';
 import { StripeService } from '@admin/shared/data/services';
 import { BarbershopPlanEnum } from '@admin/shared/data/types';
 import { SpinnerComponent, SpinnerDirective } from 'ba-ngrx-signal-based';
-import { finalize, first, shareReplay, tap } from 'rxjs';
+import { finalize, first, tap } from 'rxjs';
 
 @Component({
   selector: 'app-subscription-page',
@@ -31,7 +35,7 @@ import { finalize, first, shareReplay, tap } from 'rxjs';
   styleUrl: './subscription-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SubscriptionPageComponent {
+export class SubscriptionPageComponent implements OnInit {
   readonly I18N_PREFFIX = 'mfAdmin.subscription.';
   readonly Plan = BarbershopPlanEnum;
   readonly plans = signal([
@@ -51,16 +55,39 @@ export class SubscriptionPageComponent {
     },
   ]).asReadonly();
   #stripeService = inject(StripeService);
+  #injector = inject(Injector);
   #platformId = inject(PLATFORM_ID);
+  #destroyRef = inject(DestroyRef);
   isLoading = signal(true);
   isSelectPlanLoading = signal(false);
-  portalSessionX = toSignal(
-    this.#stripeService.getPortalSessionUrl().pipe(
-      shareReplay({ refCount: true, bufferSize: 1 }),
-      tap(() => this.isLoading.set(false)),
-      finalize(() => this.isLoading.set(false))
-    )
-  );
+  portalSessionX = signal<{
+    checkoutSessionUrl?: string;
+    portalSessionUrl?: string;
+    freeTrial?: boolean | undefined;
+  }>({});
+
+  constructor() {}
+
+  ngOnInit(): void {
+    afterNextRender(
+      () => {
+        this.#stripeService
+          .getPortalSessionUrl()
+          .pipe(
+            takeUntilDestroyed(this.#destroyRef),
+            tap((resp) => {
+              if (!!resp) {
+                this.portalSessionX.set(resp);
+              }
+              this.isLoading.set(false);
+            }),
+            finalize(() => this.isLoading.set(false))
+          )
+          .subscribe();
+      },
+      { injector: this.#injector }
+    );
+  }
 
   selectPlanSetup(plan: BarbershopPlanEnum): void {
     this.isSelectPlanLoading.set(true);

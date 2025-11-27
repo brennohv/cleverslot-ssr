@@ -26,6 +26,7 @@ import { isPlatformBrowser } from '@angular/common';
 import {
   provideClientHydration,
   withEventReplay,
+  withIncrementalHydration,
 } from '@angular/platform-browser';
 import { SsrCookieService } from 'ngx-cookie-service-ssr';
 
@@ -71,6 +72,6 @@ export const appConfig: ApplicationConfig = {
       withInterceptors([authenticationInterceptor]),
       withFetch()
     ),
-    provideClientHydration(withEventReplay()),
+    provideClientHydration(withEventReplay(), withIncrementalHydration()),
   ],
 };

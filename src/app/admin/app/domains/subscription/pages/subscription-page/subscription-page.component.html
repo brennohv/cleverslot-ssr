@@ -1,4 +1,5 @@
 <div class="container">
+  @defer (on immediate) {
   <div [libSpinner]="isSelectPlanLoading()" class="row column-gap-4 row-gap-4">
     @if (isLoading()) {
     <lib-spinner />
@@ -99,4 +100,5 @@
     </div>
     }
   </div>
+  }
 </div>

@@ -1,14 +1,20 @@
 {
-  "/api": {
+  "/custom-api": {
     "target": "https://typical-cheese-f4c89ba13c.strapiapp.com",
     "secure": false,
     "changeOrigin": true,
+    "pathRewrite": {
+      "^/custom-api": "/api"
+    },
     "logLevel": "debug"
   },
-  "/graphql": {
+  "/custom-graphql": {
     "target": "https://typical-cheese-f4c89ba13c.strapiapp.com",
     "secure": false,
     "changeOrigin": true,
+    "pathRewrite": {
+      "^/custom-graphql": "/graphql"
+    },
     "logLevel": "debug"
   }
 }
