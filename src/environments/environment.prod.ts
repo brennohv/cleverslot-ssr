@@ -1,4 +1,4 @@
 export const environment = {
-  baseUrl: 'https://cleverslot.netlify.app',
+  baseUrl: 'https://cleverslot-ssr.vercel.app',
   production: true,
 };
