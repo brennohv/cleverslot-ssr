@@ -17,13 +17,13 @@ export class StripeService {
       checkoutSessionUrl: string;
       portalSessionUrl: string;
       freeTrial?: boolean;
-    }>(`/api/stripe/checkout-session?plan=${plan}`, {});
+    }>(`/custom-api/stripe/checkout-session?plan=${plan}`, {});
   }
 
   checkoutSuccess(sessionId: string) {
     return this.http.post<{
       message: string;
       success: boolean;
-    }>(`/api/stripe/checkout-success`, { sessionId });
+    }>(`/custom-api/stripe/checkout-success`, { sessionId });
   }
 }
