@@ -1,0 +1,189 @@
+<lib-modal-body
+  [modalTitle]="
+    contentView() === ContentView.CANCEL_APPOINTMENT
+      ? (I18N_PREFFIX + 'cancel-title' | transloco)
+      : ''
+  "
+  alignActions="end"
+  >
+  <ng-container slot="modal-content">
+    @switch (contentView()) {
+      @case (ContentView.DEFAULT) {
+        @defer (when isLoaded()) {
+        @if (!!appointmentById()?.client) {
+          <div class="d-flex align-items-center column-gap-2 mb-3" role="button">
+            <img
+              class="user-icon-lg rounded-circle"
+                [src]="
+                  appointmentById()?.client?.photo?.url
+                    | getImgUrl : '/assets/icons/avatar.svg'
+                "
+              alt="user-icon"
+              />
+            <div class="d-flex flex-column row-gap-1">
+              <span class="font-medium oswald-emphasis">{{
+                appointmentById()?.client?.username
+              }}</span>
+              <span class="font-medium oswald-emphasis">{{
+                appointmentById()?.client?.telephone?.internationalNumber
+              }}</span>
+            </div>
+          </div>
+        } @else {
+          <div class="d-flex align-items-center column-gap-2 mb-3" role="button">
+            <img
+              class="user-icon-lg rounded-circle"
+              src="/assets/icons/unregistered-user.png"
+              alt="user-icon"
+              />
+            <div class="d-flex flex-column row-gap-1">
+              <span class="font-medium oswald-emphasis">{{
+                appointmentById()?.nonRegisteredUser?.name
+              }}</span>
+              <span class="font-medium oswald-emphasis">{{
+                appointmentById()?.nonRegisteredUser?.telephone?.internationalNumber
+              }}</span>
+            </div>
+          </div>
+        }
+
+        <mat-divider class="mb-3"/>
+
+        <div class="d-flex flex-column row-gap-2">
+          <section>
+            <div class="d-flex column-gap-2 align-items-center">
+              <strong class="d-flex column-gap-1">
+                <mat-icon>calendar_month</mat-icon>
+                <span [transloco]="I18N_PREFFIX + 'date-label'"></span>
+              </strong>
+              <span>{{ appointmentById()?.date! | dateDescriptionRx | async  }}</span>
+            </div>
+          </section>
+
+          <section>
+            <div class="d-flex column-gap-2 align-items-center">
+              <strong class="d-flex column-gap-1">
+                <mat-icon>schedule</mat-icon>
+                <span [transloco]="I18N_PREFFIX + 'time-label'"></span>
+              </strong>
+              <span
+                >{{ appointmentById()?.startTime! | timeFormat }} -
+                {{ appointmentById()?.endTime! | timeFormat }}</span
+                >
+              </div>
+            </section>
+
+            <section>
+              <div class="d-flex column-gap-2 align-items-center">
+                <strong class="d-flex column-gap-1">
+                  <mat-icon> info</mat-icon>
+                  <span [transloco]="I18N_PREFFIX + 'status-label'"></span>
+                </strong>
+                <span
+                  [class.text-danger]="appointmentById()?.appointmentStatus === IAppointmentStatus.CANCELED"
+                  [class.text-success]="appointmentById()?.appointmentStatus === IAppointmentStatus.BOOKED" >
+                  <span [transloco]="I18N_PREFFIX + appointmentById()?.appointmentStatus"></span>
+                </span>
+              </div>
+            </section>
+
+            <section>
+              <div class="d-flex column-gap-2 align-items-center">
+                <strong class="d-flex column-gap-1">
+                  <mat-icon>content_cut</mat-icon>
+                  <span [transloco]="I18N_PREFFIX + 'service-label'"></span>
+                </strong>
+                <span> {{ appointmentById()?.service?.name }} </span>
+              </div>
+            </section>
+
+            <section>
+              <div class="d-flex column-gap-2 align-items-center">
+                <strong class="d-flex column-gap-1">
+                  <mat-icon>payments</mat-icon>
+                  <span [transloco]="I18N_PREFFIX + 'price-label'"></span>
+                </strong>
+                <span>
+                  {{ appointmentById()?.service?.recurrency }}
+                  {{ appointmentById()?.service?.value }}
+                </span>
+              </div>
+            </section>
+          </div>
+          <div></div>
+          } @placeholder (minimum 500ms) {
+          <ng-container [ngTemplateOutlet]=loadingSkeleton></ng-container>
+        }
+      }
+      @case (ContentView.CANCEL_APPOINTMENT) {
+        <span><span [transloco]="I18N_PREFFIX + 'cancel-msg'"></span></span>
+      }
+    }
+  </ng-container>
+
+  <ng-container slot="modal-actions">
+    @switch (contentView()) {
+      @case (ContentView.DEFAULT) {
+        <button mat-button (click)="close()">
+          <span [transloco]="'shared.close'"></span>
+        </button>
+        @if (canEdit()) {
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="changeContentView(ContentView.CANCEL_APPOINTMENT)"
+            >
+            <mat-icon>event_busy</mat-icon>
+            <span [transloco]="'shared.cancel'"></span>
+          </button>
+        }
+        @if (canEdit()) {
+          <button
+            mat-raised-button
+            (click)="close({view: IDetailedView.EDIT, appointment: appointmentById()!})"
+            color="primary"
+            cdkFocusInitial
+            >
+            <span [transloco]="'shared.edit'"></span>
+          </button>
+        }
+        } @case (ContentView.CANCEL_APPOINTMENT) {
+        <button mat-button (click)="changeContentView(ContentView.DEFAULT)">
+          <span [transloco]="'shared.no'"></span>
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="cancelAppointment()"
+          cdkFocusInitial
+          >
+          <span [transloco]="'shared.yes'"></span>
+        </button>
+      }
+    }
+  </ng-container>
+</lib-modal-body>
+
+
+<ng-template #loadingSkeleton>
+  <div class="d-flex align-items-center column-gap-2 mb-3">
+    <div>
+      <ngx-skeleton-loader appearance="circle" [theme]="{height: '48px', width: '48px'}"  count="1" />
+    </div>
+    <div class="d-flex flex-column justify-content-center row-gap-1">
+      <ngx-skeleton-loader [theme]="{height: '16px', width: '100px'}"/>
+      <ngx-skeleton-loader [theme]="{height: '16px', width: '150px'}"/>
+    </div>
+  </div>
+
+  <mat-divider class="mb-3"/>
+
+  <div class="d-flex flex-column row-gap-2">
+    <ngx-skeleton-loader [theme]="{height: '24px'}" />
+    <ngx-skeleton-loader [theme]="{height: '24px', width: '180px'}" />
+    <ngx-skeleton-loader [theme]="{height: '24px', width: '160px'}" />
+    <ngx-skeleton-loader [theme]="{height: '24px', width: '140px'}" />
+    <ngx-skeleton-loader [theme]="{height: '24px', width: '120px'}" />
+  </div>
+
+</ng-template>

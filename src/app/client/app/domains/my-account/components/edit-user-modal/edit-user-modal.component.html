@@ -1,0 +1,24 @@
+<h2 mat-dialog-title><span [transloco]="data.title"></span></h2>
+<mat-dialog-content>
+  <div class="row">
+    <div class="col-12 p-2">
+      <form [formGroup]="userForm">
+        @switch (data.contentView) { @case (IEditUserView.TELEPHONE) {
+        <div>
+          <lib-telephone-input
+            inputId="modal-telephone-input"
+            placeholder="Telephone"
+            [formControlRef]="userForm.controls.telephone"
+            [required]="false"
+          >
+          </lib-telephone-input>
+        </div>
+        }}
+      </form>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button color="accent" (click)="closeModal()"><span [transloco]="I18N_PREFFIX + 'cancel'"></span></button>
+  <button mat-button color="primary" (click)="changeUser()" cdkFocusInitial><span [transloco]="I18N_PREFFIX + 'save'"></span></button>
+</mat-dialog-actions>

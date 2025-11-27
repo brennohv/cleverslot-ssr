@@ -1,0 +1,116 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="main-header-page"><span [transloco]="I18N_PREFFIX + 'main-header'"></span></h2>
+    </div>
+  </div>
+    <div class="row">
+      <ng-container *ngIf="loading(); else userContent">
+        <lib-spinner />
+      </ng-container>
+
+      <ng-template #userContent>
+        @if (email()) {
+          <div class="col-12 col-md-8 d-flex flex-column">
+            <mat-card class="mb-3">
+              <mat-card-content>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex flex-column">
+                    <h4><span [transloco]="I18N_PREFFIX + 'user-photo.title'"></span></h4>
+                    <span><span [transloco]="I18N_PREFFIX + 'user-photo.description'"></span></span>
+                  </div>
+                  <div
+                    (click)="openUploadModal()"
+                    class="position-relative cursor-pointer"
+                    role="presentation"
+                  >
+                    <img
+                      class="user-icon rounded-circle"
+                      [src]="userphoto() | getImgUrl : '/assets/icons/avatar.svg'"
+                      alt="user-icon"
+                    />
+                    <div class="photoOverlay opacity-75">
+                      <mat-icon>add_a_photo</mat-icon>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <div class="col-12 col-md-8">
+            <mat-card class="mb-3">
+              <mat-card-header>
+                <mat-card-title>
+                    <h4>
+                      <span [transloco]="I18N_PREFFIX + 'title'"></span>
+                    </h4>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="pb-0">
+                <mat-list class="p-0">
+                  <mat-list-item>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span class="overflow-hidden text-truncate"
+                        >Username: {{ userName() }}</span
+                      >
+                      <button
+                        mat-icon-button
+                        color="primary"
+                        aria-label="Edit"
+                      >
+                      </button>
+                    </div>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+      
+                  <mat-list-item
+                    ><div class="d-flex justify-content-between align-items-center">
+                      <span class="overflow-hidden text-truncate"
+                        >Email: {{ email() }}</span
+                      >
+                      <button
+                        mat-icon-button
+                        color="primary"
+                        aria-label="Edit"
+                      >
+                      </button>
+                    </div></mat-list-item
+                  >
+                  <mat-divider></mat-divider>
+      
+                  <mat-list-item
+                    ><div class="d-flex justify-content-between align-items-center">
+                      <span class="overflow-hidden text-truncate"
+                        ><span [transloco]="I18N_PREFFIX + 'telephone'"></span>
+                        {{ telephone() || "-" }}</span
+                      >
+                      <button
+                        (click)="
+                          openDialog(IEditUserView.TELEPHONE, I18N_PREFFIX + 'edit-phone')
+                        "
+                        mat-icon-button
+                        color="primary"
+                        aria-label="Edit"
+                      >
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                    </div></mat-list-item
+                  >
+                  <mat-divider></mat-divider>
+                </mat-list>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          } @else {
+            <div class="col-auto d-flex flex-column row-gap-2 align-items-start">
+              <h2><span [transloco]="'shared.login-title'"></span></h2>
+              <span><span [transloco]="'shared.login-description'"></span></span>
+              <a mat-raised-button color="primary" routerLink="/auth" [queryParams]="{redirectTo: 'my-account'}"><span [transloco]="'shared.login-button'"></span></a>
+            </div>
+            
+          }
+      </ng-template>
+      
+    </div>
+  </div>

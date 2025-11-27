@@ -1,0 +1,22 @@
+.subscription-card {
+    background-color: rgba(49, 59, 73, 0.2);
+
+    @media (max-width: 599px) {
+        margin: 0 auto;
+        max-width: 93dvw;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .free-trial {
+        width: max-content;
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--c-primary);
+    }
+}

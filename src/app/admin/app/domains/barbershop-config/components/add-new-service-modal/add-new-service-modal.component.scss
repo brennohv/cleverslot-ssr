@@ -1,0 +1,12 @@
+.photo-preview {
+    max-width: 56px;
+    width: 56px;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.photo {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }

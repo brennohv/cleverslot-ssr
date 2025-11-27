@@ -1,0 +1,152 @@
+{
+  "barber-config": {
+    "main-page": {
+      "title": "Professional Configuration"
+    },
+    "config-nav": {
+      "nav-select-label": "Section",
+      "profile": "Profile",
+      "services": "Services"
+    },
+    "config-profile": {
+      "title-section": "Profile",
+      "title": "My photo",
+      "description": "Customize your account!",
+      "professional-information": {
+        "title": "Professional information",
+        "first-name": "First name",
+        "last-name": "Last name"
+      },
+      "professional-edit-name": {
+        "FIRST_NAME": "First name",
+        "LAST_NAME": "Last name",
+        "edit-first-name": "Edit first name",
+        "edit-last-name": "Edit last name"
+      }
+    },
+    "config-services": {
+      "title-section": "Services",
+      "description": "Here you will be able to select which services you want to link based on the barber shop's service list.",
+      "search": "Service name",
+      "active-th": "Associated",
+      "name-th": "Name",
+      "professionalPercentage-th": "Comission",
+      "photo-th": "Photo",
+      "duration-th": "Duration",
+      "value-th": "Gross value"
+    },
+    "upload-image-modal": {
+      "title": "Edit your image profile",
+      "label-input-upload": "Upload you photo",
+      "upload-hint": "Max size {{size}}MB",
+      "cancel-button": "Cancel",
+      "upload-button": "Upload",
+      "success-msg": "Photo updated successfully"
+    }
+  },
+  "schedule": {
+    "main-page": {
+      "title": "Schedule"
+    },
+    "add-new-event": {
+      "book": "Book",
+      "block": "Block my agenda"
+    },
+    "picker-dialog": {
+      "title": "Select a date",
+      "cancel": "Cancel",
+      "select": "Select"
+    },
+    "blocker-dialog": {
+      "delete-title": "Blocker delete",
+      "date-title": "Select dates",
+      "date-start": "Initial date",
+      "date-end": "End date",
+      "time-title": "Select times",
+      "time-start": "Start time",
+      "time-end": "End time",
+      "day-of-week-title": "Select the days of the week",
+      "delete-msg": "Are you sure you want to delete this block?",
+      "delete-warning": "This action cannot be undone.",
+      "close": "Close",
+      "delete": "Delete",
+      "edit": "Edit",
+      "block": "Block",
+      "blocker-created-msg": "Blocker created successfully",
+      "blocker-edited-msg": "Blocker edited successfully",
+      "blocker-deleted-msg": "Blocker deleted successfully"
+    },
+    "blocker-week": {
+      "abbreviation-monday": "Mon",
+      "abbreviation-tuesday": "Tue",
+      "abbreviation-wednesday": "Wed",
+      "abbreviation-thursday": "Thu",
+      "abbreviation-friday": "Fri",
+      "abbreviation-saturday": "Sat",
+      "abbreviation-sunday": "Sun"
+    },
+    "new-appointment": {
+      "date-title": "Select a day",
+      "date-label": "Date",
+      "service-title": "Select a service",
+      "service-label": "Services",
+      "client-title": "Add a client",
+      "non-registered-label": "Unregistered client",
+      "new-client-label": "New client",
+      "mat-button-registered": "Registered",
+      "mat-button-guest": "Guest",
+      "mat-button-new": "New",
+      "client-view-help": "Registered: Clients who are already registered \n\n Guest: Clients who prefer not to create an account \n\n New: Clients for whom you will create a new user.",
+      "new-client-view": {
+        "email-label": "Email",
+        "username-label": "Username",
+        "phone-label": "Phone"
+      },
+      "registered-label": "Registered client",
+      "name-label": "Name",
+      "telephone-label": "Telephone",
+      "username-label": "Username ou Email",
+      "username-placeholder": "Type to search",
+      "no-user-msg": "User not found",
+      "time-title": "Select a time",
+      "accommodation": "Accommodation",
+      "no-time-msg": "No available time slots on this date!",
+      "start-time-label": "Start time",
+      "end-time-label": "End time",
+      "select-service-msg": "Select a service to find available booking times",
+      "close": "Close",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "book": "Book"
+    },
+    "appointment-detailed": {
+      "cancel-title": "Cancel appointment",
+      "cancel-msg": "Are you sure you want to cancel this appointment?",
+      "date-label": "Date:",
+      "time-label": "Time:",
+      "status-label": "Status:",
+      "service-label": "Service:",
+      "price-label": "Value:",
+      "booked": "Booked",
+      "canceled": "Canceled"
+    }
+  },
+  "barber-comissions": {
+    "initial-date": "Initial date",
+    "final-date": "Final date",
+    "title": "Commissions",
+    "no-comissions": "There's no comissions for selected dates!",
+    "table": {
+      "name-th": "Service",
+      "photo-th": "Photo",
+      "quantity-th": "Quantity",
+      "total-value-th": "Comission",
+      "detailed": {
+        "date": "Date",
+        "start-time": "Start Time",
+        "client": "Client Name",
+        "value": "Comission"
+      }
+    }
+  }
+}

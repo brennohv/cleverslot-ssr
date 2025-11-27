@@ -1,0 +1,12 @@
+<mat-dialog-content>
+    <strong><span [transloco]="I18N_PREFFIX + 'title'"></span></strong>
+    <mat-card class="demo-inline-calendar-card mt-3">
+        <mat-calendar [(selected)]="selected"></mat-calendar>
+      </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions [align]="'end'">
+    <button mat-button (click)="close()"><span [transloco]="I18N_PREFFIX + 'cancel'"></span></button>
+      <button mat-raised-button (click)="apply()" color="primary" cdkFocusInitial>
+        <span [transloco]="I18N_PREFFIX + 'select'"></span>
+      </button>
+  </mat-dialog-actions>

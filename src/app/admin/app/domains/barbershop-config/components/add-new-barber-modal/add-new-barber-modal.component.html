@@ -1,0 +1,113 @@
+<lib-modal-body [alignActions]="isLoading() ? 'center' : 'end'">
+  <ng-container slot="modal-content">
+    <form class="d-flex flex-column">
+      <div class="row mb-4 row-gap-2">
+        <h4 >
+          <span [transloco]="I18N_PREFFIX + 'title'"></span>
+        </h4>
+
+        @if (!hasProfessionalProfile()) {
+          <mat-slide-toggle [formControl]="userAsProfessionalForm">
+            <span [transloco]="I18N_PREFFIX + 'toggle-user-label'"></span>
+          </mat-slide-toggle>
+        }
+        
+      </div>
+      <div class="row row-gap-2">
+        <div class="col-lg-6 col-12">
+          <lib-input
+            placeholder="First name"
+            [label]="I18N_PREFFIX + 'first-name-label' | transloco"
+            [formControlRef]="newBarberForm.controls.firstName"
+          >
+          </lib-input>
+        </div>
+        <div class="col-lg-6 col-12">
+          <lib-input
+            placeholder="Last name"
+            [label]="I18N_PREFFIX + 'last-name-label' | transloco"
+            [formControlRef]="newBarberForm.controls.lastName"
+          >
+          </lib-input>
+        </div>
+
+        @if (!isUserAsProfessionalView()) {
+          <div class="col-lg-6 col-12">
+            <lib-input
+              placeholder="Email"
+              [type]="IInputType.EMAIL"
+              [label]="I18N_PREFFIX + 'email-label' | transloco"
+              [formControlRef]="newBarberForm.controls.email"
+            >
+            </lib-input>
+          </div>
+          <div class="col-lg-6 col-12">
+              <lib-input
+                placeholder="Username"
+                [label]="I18N_PREFFIX + 'username-label' | transloco"
+                [formControlRef]="newBarberForm.controls.username"
+              >
+              </lib-input>
+            </div>
+          <div class="col-lg-6 col-12">
+              <lib-telephone-input 
+                  inputId="userTelephone" 
+                  [placeholder]="I18N_PREFFIX + 'phone-label' | transloco"
+                  [formControlRef]="newBarberForm.controls.telephone">
+              </lib-telephone-input>
+          </div>
+          <div class="col-lg-6 col-12">
+            <lib-input
+              placeholder="Password"
+              [label]="I18N_PREFFIX + 'password-label' | transloco"
+              [formControlRef]="newBarberForm.controls.password"
+            >
+            </lib-input>
+          </div>
+        }
+      </div>
+      <div class="row row-gap-2">
+        <div class="col-lg-6 col-8">
+          <lib-file-upload-input
+            [hint]="'shared.upload-hint' | transloco : { size: maxSizeInMb }"
+            [label]="I18N_PREFFIX + 'input-upload-label' | transloco"
+            (filePreviewUrl)="onImageChange($event)"
+            [formControlRef]="newBarberForm.controls.photo"
+          >
+          </lib-file-upload-input>
+        </div>
+        <div class="col-4">
+          <img
+            class="photo-preview rounded-circle"
+            [src]="
+              photoPreviewFromPhotoChange()
+                ? photoPreviewFromPhotoChange()
+                : (photoPreviewFromInjection() | getImgUrl: '/assets/icons/avatar.svg')
+            "
+            alt="user-icon"
+          />
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container slot="modal-actions">
+
+    @if (isLoading()) {
+      <lib-spinner></lib-spinner>
+    } @else {
+      <button mat-button (click)="close()">
+      <span [transloco]="'shared.cancel'"></span>
+      </button>
+      <button
+        [disabled]="newBarberForm.invalid"
+        mat-raised-button
+        (click)="createNewBarber()"
+        color="primary"
+        cdkFocusInitial
+      >
+        <span [transloco]="'shared.create'"></span>
+      </button>
+    }
+  </ng-container>
+</lib-modal-body>

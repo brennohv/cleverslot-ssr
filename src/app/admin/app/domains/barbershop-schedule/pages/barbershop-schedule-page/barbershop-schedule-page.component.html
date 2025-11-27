@@ -1,0 +1,29 @@
+
+<div class='container'>
+  <div class="row">
+    <div class="col-12">
+      <h2 class="main-header-page"><span [transloco]="I18N_PREFFIX + 'title'"></span></h2>
+    </div>
+  </div>
+  <div class='row d-flex row-gap-3'>
+    @for (professional of professionalList(); track $index) {
+      <div class="col-12 col-lg-6">
+        <app-barbershop-full-calendar
+          [businessHours]="businessHours()"
+          [professional]="professional" />
+      </div>
+    } @empty {
+      @if (isLoaded()) {
+        <div class="d-flex flex-column row-gap-2 align-items-start">
+          <h2><span [transloco]="I18N_PREFFIX + 'no-professionals-title'"></span></h2>
+          <span><span [transloco]="I18N_PREFFIX + 'no-professionals-description'"></span></span>
+          <a role="presentation" mat-raised-button color="primary" (click)="navigateSetup()" ><span [transloco]="I18N_PREFFIX + 'no-professionals-button'"></span></a>
+        </div>
+      } @else {
+        <lib-spinner/>
+      }
+    }
+  </div>
+  </div>
+  
+  

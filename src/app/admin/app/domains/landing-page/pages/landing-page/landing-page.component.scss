@@ -1,0 +1,7 @@
+#video-container {
+    video {
+        @media (max-width: 599px) {
+            width: 100%;
+        }
+    }
+}

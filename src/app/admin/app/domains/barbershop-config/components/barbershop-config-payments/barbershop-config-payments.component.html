@@ -1,0 +1,52 @@
+<app-barbershop-config-header
+  [description]="I18N_PREFFIX + 'description'"
+  [title]="I18N_PREFFIX + 'title-section'"
+  (onActionClick)="openCreateEditPaymentDialog()"
+  />
+
+@if (isLoading()) {
+  <lib-spinner />
+} @else {
+  <app-barbershop-config-card>
+    <ng-container slot="card-content">
+      <mat-list class="p-0">
+        @for (payment of paymentList(); track $index; let last = $last ) {
+          <mat-list-item class="">
+            <div class="d-flex justify-content-between align-items-center ">
+              <div class="d-flex column-gap-3 align-items-center">
+                <div class="d-flex column-gap-2 align-items-center">
+                  <mat-icon>payments</mat-icon>
+                  @if (!isMobile()) {
+                    <span class="fst-italic"><span [transloco]="I18N_PREFFIX + 'payment'"></span></span>
+                  }
+                </div>
+                <div>
+                  <span class="overflow-hidden text-truncate fw-medium">
+                    {{payment.value }}
+                  </span>
+                </div>
+              </div>
+              <div class="d-flex column-gap-2 p-2">
+                <button color="primary" mat-mini-fab aria-label="Edit payments" (click)="openCreateEditPaymentDialog(payment)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button color="white" mat-mini-fab aria-label="Edit payments" (click)="deletePaymentDialog(payment)">
+                  <mat-icon class="text-danger">delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-list-item>
+          @if (!last) {
+            <mat-divider></mat-divider>
+          }
+          } @empty {
+          <div class="d-flex flex-column align-items-center p-4">
+            <p class="mt-4"><span [transloco]="I18N_PREFFIX + 'no-services'"></span></p>
+            <img src="/assets/icons/pictogram-no-results-found.svg" alt="" />
+          </div>
+        }
+      </mat-list>
+    </ng-container>
+  </app-barbershop-config-card>
+}
+

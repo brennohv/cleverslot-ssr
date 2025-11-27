@@ -1,0 +1,53 @@
+b {
+  /* used for event dates/times */
+  margin-right: 4px;
+}
+
+::ng-deep {
+    .fc-v-event {
+        border: none;
+        border-left: 5px solid var(--c-secondary);
+        background-color: var(--c-primary);
+        cursor: pointer;
+        overflow: auto;
+    
+        img.user-icon {
+          width: 25px;
+          height: 25px;
+    
+          &.unregistered {
+            background-color: #4863ae;
+          }
+        }
+    
+        &.block-event {
+          border-left: 5px solid var(--bs-danger);
+          background-color: white;
+          background-image: repeating-linear-gradient(
+            47deg,
+            rgba(255, 0, 0, 0.1),
+            rgba(255, 0, 0, 0.1) 10px,
+            transparent 10px,
+            transparent 20px
+          );
+    
+          .fc-event-main {
+            color: var(--c-dark-primary-text);
+          }
+        }
+    
+        &.canceled {
+          border-left: 5px solid var(--bs-danger);
+          background-color: white;
+    
+          .fc-event-main {
+            color: var(--c-dark-primary-text);
+          }
+    
+          b,
+          i {
+            text-decoration: line-through;
+          }
+        }
+      }
+}

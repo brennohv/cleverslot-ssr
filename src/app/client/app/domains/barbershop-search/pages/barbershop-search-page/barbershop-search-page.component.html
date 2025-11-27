@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row align-items-center justify-content-center">
+    <div class="col-12 column-gap-1 d-flex">
+      @if (user) {
+      <span [transloco]="I18N_PREFFIX + 'hello'"></span>
+      <strong>{{ user.username() }} </strong>
+      }
+    </div>
+    <div class="col-12">
+      <p>{{ today$ | async }}, {{ date$ | async }}</p>
+    </div>
+    <div class="col-12">
+      <lib-input
+        matPrefix="search"
+        [label]="I18N_PREFFIX + 'search-label' | transloco"
+        [placeholder]="I18N_PREFFIX + 'search-placeholder' | transloco"
+        [formControlRef]="searchForm"
+      >
+      </lib-input>
+    </div>
+
+    @if(!isLoaded()) {
+    <lib-spinner />
+    } @else {
+    <div
+      [class.empty]="!barberShopList().length"
+      class="barbershop-container col-12"
+    >
+      @for (barbershop of barberShopList(); track $index) {
+      <mat-card class="mb-3 d-flex justify-content-center">
+        <mat-card-content>
+          <div
+            class="d-flex p-3 column-gap-3 align-items-center"
+            [routerLink]="barbershop.slug"
+          >
+            <span>
+              <img
+                class="barbershop-logo rounded-circle"
+                [src]="barbershop.logo?.url | getImgUrl"
+                alt=""
+              />
+            </span>
+            <div
+              class="barbershop-info flex-grow-1 d-flex flex-column row-gap-1"
+            >
+              <strong class="truncate-2">{{ barbershop.name }}</strong>
+              <span class="truncate-2">
+                {{ barbershop.address | barbershopAddress }}
+              </span>
+              <span>{{ barbershop?.telephone?.internationalNumber }}</span>
+            </div>
+            <div>
+              <button mat-mini-fab color="primary" aria-label="Arrow icon">
+                <mat-icon class="animated-icon-pulse">arrow_right_alt</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      } @empty {
+      <div class="d-flex flex-column align-items-center not-found-container">
+        <p class="mt-4">
+          <span [transloco]="I18N_PREFFIX + 'no-found'"></span>
+        </p>
+        <img src="/assets/icons/pictogram-no-results-found.svg" alt="" />
+      </div>
+      }
+    </div>
+    @if (isGetMoreLoading()) {
+    <lib-spinner class="col-auto mt-2" />
+    } @else if (hasMoreBarbershop()) {
+    <button
+      class="col-auto mt-2"
+      mat-raised-button
+      color="primary"
+      (click)="getMoreSetup()"
+    >
+      Carregar mais organizações
+    </button>
+    } }
+  </div>
+</div>

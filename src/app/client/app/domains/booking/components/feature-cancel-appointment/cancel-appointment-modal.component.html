@@ -1,0 +1,8 @@
+<h2 mat-dialog-title><span [transloco]="I18N_PREFFIX + 'title'"></span></h2>
+<mat-dialog-content>
+  <p><span [transloco]="I18N_PREFFIX + 'description'"></span></p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="this.dialogRef.close('No')"><span [transloco]="'shared.no'"></span></button>
+  <button mat-raised-button color="warn" (click)="this.dialogRef.close('Yes')" cdkFocusInitial><span [transloco]="'shared.yes'"></span></button>
+</mat-dialog-actions>

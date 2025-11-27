@@ -1,0 +1,6 @@
+{
+  "mf-client-barbershop": "/dist/mf-client/remoteEntry.js",
+  "mf-auth-barbershop": "/dist/mf-auth/remoteEntry.js",
+  "mf-barber-barbershop": "/dist/mf-barber/remoteEntry.js",
+  "mf-admin-barbershop": "/dist/mf-admin/remoteEntry.js"
+}

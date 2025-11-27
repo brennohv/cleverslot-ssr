@@ -1,0 +1,167 @@
+<header class="bg-primary text-white text-center py-5">
+    <div class="container">
+        <h1><span [transloco]="I18N_PREFFIX + 'header.welcome-title'"></span></h1>
+        <p class="lead"><span [transloco]="I18N_PREFFIX + 'header.welcome-description'"></span></p>
+        <p class="lead">
+            <span [transloco]="I18N_PREFFIX + 'header.trial-offer'"></span>
+        </p>
+        <a role="presentation" (click)="scrollToElement(howItWorks)" class="btn btn-light btn-lg">
+            <span [transloco]="I18N_PREFFIX + 'header.try-button'"></span>
+        </a>
+    </div>
+</header>
+
+<section id="features" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4"><span [transloco]="I18N_PREFFIX + 'features.section-title'"></span></h2>
+        <div class="row">
+            <div class="col-lg-6 mt-4">
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                      <strong><span [transloco]="I18N_PREFFIX + 'features.items.simplified-scheduling.bold'"></span></strong>
+                      <span [transloco]="I18N_PREFFIX + 'features.items.simplified-scheduling.text'"></span>
+                    </li>
+                    <li class="mb-3">
+                      <strong><span [transloco]="I18N_PREFFIX + 'features.items.access-anywhere.bold'"></span></strong>
+                      <span [transloco]="I18N_PREFFIX + 'features.items.access-anywhere.text'"></span>
+                    </li>
+                    <li class="mb-3">
+                      <strong><span [transloco]="I18N_PREFFIX + 'features.items.boost-business.bold'"></span></strong>
+                      <span [transloco]="I18N_PREFFIX + 'features.items.boost-business.text'"></span>
+                    </li>
+                    <li class="mb-3">
+                      <strong><span [transloco]="I18N_PREFFIX + 'features.items.automatic-notifications.bold'"></span></strong>
+                      <span [transloco]="I18N_PREFFIX + 'features.items.automatic-notifications.text'"></span>
+                    </li>
+                    <li class="mb-3">
+                      <strong><span [transloco]="I18N_PREFFIX + 'features.items.financial-control.bold'"></span></strong>
+                      <span [transloco]="I18N_PREFFIX + 'features.items.financial-control.text'"></span>
+                    </li>
+                    <li class="mb-3">
+                      <strong><span [transloco]="I18N_PREFFIX + 'features.items.for-all-businesses.bold'"></span></strong>
+                      <span [transloco]="I18N_PREFFIX + 'features.items.for-all-businesses.text'"></span>
+                    </li>
+                  </ul>
+                  
+            </div>
+            <div class="col-lg-6 order-first order-md-last">
+                <img src="/assets/icons/calendar-landing-page.svg" class="img-fluid rounded"
+                    [alt]="I18N_PREFFIX + 'features.image-alt' | transloco" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="video-container" class="py-5 bg-primary text-white">
+    <div class="container">
+        <h2 class="text-center mb-4"><span [transloco]="I18N_PREFFIX + 'video.section-title'"></span></h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-center">
+                    <video width="640" controls>
+                        <source src="/assets/video/cleverslot-features-1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section #howItWorks class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-4"><span [transloco]="I18N_PREFFIX + 'how-it-works.section-title'"></span></h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="p-3">
+                    <h3><span [transloco]="I18N_PREFFIX + 'how-it-works.steps.step-1.title'"></span></h3>
+                    <p><span [transloco]="I18N_PREFFIX + 'how-it-works.steps.step-1.description'"></span></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3">
+                    <h3><span [transloco]="I18N_PREFFIX + 'how-it-works.steps.step-2.title'"></span></h3>
+                    <p><span [transloco]="I18N_PREFFIX + 'how-it-works.steps.step-2.description'"></span></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3">
+                    <h3><span [transloco]="I18N_PREFFIX + 'how-it-works.steps.step-3.title'"></span></h3>
+                    <p><span [transloco]="I18N_PREFFIX + 'how-it-works.steps.step-3.description'"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center column-gap-5 align-items-center">
+            @if (canBePartner() || hasCreatedBarbershop()) {
+                <div class="col-12 mb-4">
+                    <mat-divider />
+                </div>
+                <div class="col-2 d-none d-lg-block">
+                    <img class="w-100" src="/assets/icons/register-landing-page.png" alt="" />
+                </div>
+                <div class="col-12 col-md-8 col-lg-4 text-center">
+                    <h2><span [transloco]="I18N_PREFFIX + 'register-section.title'"></span></h2>
+                    <form [formGroup]="registerForm" class="form-container"
+                        (keyup.enter)="registerWithEstablishmentSetup()">
+                        <div class="mb-3">
+                            <lib-input [type]="IInputType.EMAIL"
+                                [label]="I18N_PREFFIX + 'register-section.form.email' | transloco"
+                                [formControlRef]="registerForm.controls.email"></lib-input>
+                        </div>
+                        <div class="mb-3">
+                            <lib-input [label]="I18N_PREFFIX + 'register-section.form.username' | transloco"
+                                [formControlRef]="registerForm.controls.username"></lib-input>
+                        </div>
+                        <div class="mb-3">
+                            <lib-input [label]="I18N_PREFFIX + 'register-section.form.establishment-name' | transloco"
+                                [formControlRef]="registerForm.controls.estabilishmentName"></lib-input>
+                        </div>
+                        <div class="mb-3">
+                            <lib-telephone-input inputId="firstTelephone"
+                                [placeholder]="I18N_PREFFIX + 'register-section.form.telephone' | transloco"
+                                [formControlRef]="registerForm.controls.telephone"></lib-telephone-input>
+                        </div>
+                        <div class="mb-3">
+                            <lib-input [type]="IInputType.PASSWORD"
+                                [label]="I18N_PREFFIX + 'register-section.form.password' | transloco"
+                                [formControlRef]="registerForm.controls.password"></lib-input>
+                        </div>
+                        <div class="mb-3">
+                            <lib-input [type]="IInputType.PASSWORD"
+                                [label]="I18N_PREFFIX + 'register-section.form.confirm-password' | transloco"
+                                [formControlRef]="registerForm.controls.confirmPassword"></lib-input>
+                        </div>
+                        @if (isLoading()) {
+                        <lib-spinner />
+                        } @else if(!hasCreatedBarbershop()) {
+                        <div class="d-flex flex-column align-items-center gap-3">
+                            <a role="presentation" (click)="registerWithEstablishmentSetup()"
+                                class="btn btn-primary btn-lg">
+                                <span [transloco]="I18N_PREFFIX + 'register-section.form.register-button'"></span>
+                            </a>
+                        </div>
+                        }
+                    </form>
+                </div>
+                <div class="col-2 d-none d-lg-block">
+                    <img class="w-100" src="/assets/icons/store-landing-page.png" alt="" />
+                </div>
+                } @else {
+                    <div class="d-flex align-items-center justify-content-center text-bg-danger rounded" role="alert">
+                        <div class="d-flex">
+                            <mat-icon class="me-2">warning</mat-icon>
+                        </div>
+                        <p class="lead text-center mb-0"><span [transloco]="I18N_PREFFIX + 'register-section.errors.already-has-organization'"></span></p>
+                    </div>
+                }
+        </div>
+    </div>
+</section>
+
+<footer id="contact" class="bg-dark text-white py-4">
+    <div class="container text-center">
+        <h5><span [transloco]="I18N_PREFFIX + 'footer.contact-title'"></span></h5>
+        <p><span [transloco]="I18N_PREFFIX + 'footer.contact-email'"></span></p>
+        <p>&copy; <span [transloco]="I18N_PREFFIX + 'footer.copyright'"></span></p>
+    </div>
+</footer>

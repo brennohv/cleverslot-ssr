@@ -1,0 +1,126 @@
+<app-barbershop-config-header
+  [description]="I18N_PREFFIX + 'description'"
+  [title]="I18N_PREFFIX + 'title-section'"
+  (onActionClick)="openCreateServiceDialog()"
+/>
+
+<lib-input
+  matPrefix="search"
+  [label]="I18N_PREFFIX + 'search' | transloco"
+  [placeholder]="I18N_PREFFIX + 'search' | transloco"
+  [formControlRef]="searchForm"
+>
+</lib-input>
+@if (!isLoaded()) {
+<div class="d-flex justify-content-center my-4">
+  <lib-spinner></lib-spinner>
+</div>
+} @else {
+<div class="mat-elevation-z8 overflow-scroll table-wrapper p-2">
+  @if (services(); as services) { @if (!services.length) {
+  <div class="d-flex flex-column align-items-center p-4">
+    <p class="mt-4"><span [transloco]="I18N_PREFFIX + 'no-services'"></span></p>
+    <img src="/assets/icons/pictogram-no-results-found.svg" alt="" />
+  </div>
+  } @else {
+  <table mat-table [dataSource]="services">
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+    <!-- Edit Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" width="96">
+        <div class="d-flex align-items-center column-gap-1">
+          <button
+            color="primary"
+            mat-mini-fab
+            aria-label="Edit services"
+            (click)="openEditServiceDialog(element)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+    <!-- IsActive Column -->
+    <ng-container matColumnDef="isActive">
+      <th mat-header-cell *matHeaderCellDef>
+        <span [transloco]="I18N_PREFFIX + 'active-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-slide-toggle
+          (toggleChange)="enableDisableService(element)"
+          [checked]="element.isActive"
+        ></mat-slide-toggle>
+      </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>
+        <span [transloco]="I18N_PREFFIX + 'name-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+    <!-- Photo Column -->
+    <ng-container matColumnDef="photo">
+      <th mat-header-cell *matHeaderCellDef>
+        <span [transloco]="I18N_PREFFIX + 'photo-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <img
+          class="user-icon rounded-circle"
+          [src]="element.photo?.url | getImgUrl"
+          alt="service photo"
+        />
+      </td>
+    </ng-container>
+    <!-- Duration Column -->
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef>
+        <span [transloco]="I18N_PREFFIX + 'duration-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.duration }} min</td>
+    </ng-container>
+    <!-- Percentage Column -->
+    <ng-container matColumnDef="professionalPercentage">
+      <th mat-header-cell *matHeaderCellDef>
+        <span [transloco]="I18N_PREFFIX + 'professionalPercentage-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.professionalPercentage }}%
+      </td>
+    </ng-container>
+    <!-- Value Column -->
+    <ng-container matColumnDef="value">
+      <th mat-header-cell *matHeaderCellDef class="text-nowrap">
+        <span [transloco]="I18N_PREFFIX + 'value-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="text-nowrap">
+        {{ element._value }}
+      </td>
+    </ng-container>
+    <!-- Profit Column -->
+    <ng-container matColumnDef="profit">
+      <th mat-header-cell *matHeaderCellDef class="text-nowrap">
+        <span [transloco]="I18N_PREFFIX + 'profit-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="text-nowrap">
+        {{ element.lucro }}
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[10, 20, 50]"
+    [hidePageSize]="isMobile()"
+    [pageSize]="pagination.pageSize()"
+    [pageIndex]="pagination.page() - 1"
+    [length]="pagination.total()"
+    (page)="handlePageEvent($event)"
+    aria-label="Select page of services"
+  >
+  </mat-paginator>
+  } }
+</div>
+}

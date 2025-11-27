@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "public": true,
+  "name": "dynamic-shell-updated",
+  "rewrites": [
+    {
+      "source": "/custom-api/:path*",
+      "destination": "https://typical-cheese-f4c89ba13c.strapiapp.com/api/:path*"
+    },
+    {
+      "source": "/custom-graphql",
+      "destination": "https://typical-cheese-f4c89ba13c.strapiapp.com/graphql"
+    },
+    { "source": "/(.*)", "destination": "/api" }
+  ],
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/dynamic-shell-updated/**"
+    }
+  }
+}

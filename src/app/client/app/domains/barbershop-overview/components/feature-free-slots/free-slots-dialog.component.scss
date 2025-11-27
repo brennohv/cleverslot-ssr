@@ -1,0 +1,41 @@
+
+::ng-deep {
+    .free-slots-dialog {
+        max-width: 450px;
+        width: 551px!important;
+    
+        @media (max-width: 599px) {
+            min-width: 90vw!important;
+        }
+    }
+
+    .nextSlotContent {
+        .mdc-evolution-chip-set__chips {
+            padding-bottom: 12px;
+            padding-right: 12px;
+            flex-flow: nowrap;
+            overflow-y: scroll;
+        }
+    }
+}
+
+
+.barber-photo {
+    max-width: 75px;
+    max-height: 75px;
+}
+
+.content-slots {
+    min-height: 216px;
+    overflow-y: auto;
+
+    @media (max-width: 599px) {
+        min-height: 216px;
+        max-height: max-content;
+    }
+}
+
+.professional-content {
+    max-height: 150px;
+    overflow-y: auto;
+}

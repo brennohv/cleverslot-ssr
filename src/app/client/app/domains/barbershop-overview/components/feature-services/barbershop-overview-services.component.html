@@ -1,0 +1,55 @@
+<div class="d-flex flex-column row-gap-4" >
+    <h4 class="mb-2"><span [transloco]="I18N_PREFFIX + 'title'"></span></h4>
+    <lib-input
+        matPrefix="search"
+        [label]="I18N_PREFFIX + 'search' | transloco"
+        [placeholder]="I18N_PREFFIX + 'search' | transloco"
+        [formControlRef]="searchForm"
+    >
+    </lib-input>
+    <div class="d-flex flex-column row-gap-4" [libSpinner]="isLoading()">
+        @for (service of serviceList(); track $index; let last = $last) {
+            <div class="content-service d-flex column-gap-3 align-items-center">
+                <div>
+                    <img class="service-photo rounded-circle" [src]="service.photo?.url | getImgUrl" alt="">
+                </div>
+                <div class="d-flex flex-column flex-grow-1 row-gap-2">
+                    <strong class="text-break"> {{service.name}} </strong>
+                    <div class="d-flex column-gap-2 description">
+                        <strong class="text-success">
+                            {{ service.value | currency: service.recurrency }}
+                        </strong>
+                        <p class="fst-italic m-0">
+                            - {{ service.duration }} min
+                        </p>
+                    </div>
+                </div>
+                <div class="flex-lg-grow-1 d-flex justify-content-end">
+                    <button mat-raised-button color="primary" (click)="openDialog(service.documentId)">
+                        <span [transloco]="I18N_PREFFIX + 'book-button'"></span>
+                      </button>
+                </div>
+            </div>
+            @if (!last) {
+                <mat-divider ></mat-divider>
+            }
+        } @empty {
+            @if (!isLoading()) {
+                <div class="d-flex flex-column align-items-center p-4">
+                    <p class="mt-4 text-center"><span [transloco]="I18N_PREFFIX + 'no-services'"></span></p>
+                    <img src="/assets/icons/pictogram-no-results-found.svg" alt="" />
+                </div>
+            }
+        }
+    </div>
+    
+    <mat-paginator 
+        [pageSizeOptions]="[10, 20, 50]"
+        [hidePageSize]="isMobile()"
+        [pageSize]="pagination.pageSize()"
+        [pageIndex]="pagination.page() - 1"
+        [length]="pagination.total()"
+        (page)="handlePageEvent($event)"
+        aria-label="Select page of services">
+    </mat-paginator>
+</div>

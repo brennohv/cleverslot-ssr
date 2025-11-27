@@ -1,0 +1,15 @@
+<h2 class="text-center" mat-dialog-title><span [transloco]="title()"></span></h2>
+<mat-dialog-content>
+    <div class="d-flex flex-column align-items-center">
+        <img src="/assets/icons/success.gif" alt="">
+        <p class="text-center"><span [transloco]="description()"></span></p>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button 
+    mat-raised-button color="primary" 
+    (click)="this.dialogRef.close('Yes')" 
+    cdkFocusInitial>
+    <span [transloco]="I18N_PREFFIX + 'pick-plan'"></span>
+</button>
+</mat-dialog-actions>

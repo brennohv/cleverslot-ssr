@@ -1,0 +1,45 @@
+<div class="d-flex row login-container">
+  <div class="background-image col-6 d-none d-md-block"></div>
+  <div class="col-12 col-md-6 login-content d-flex flex-column align-items-center justify-content-center">
+    <div class="mb-4 icon-container">
+      <img class="w-100" src="/assets/icons/icon.png" alt="" />
+    </div>
+    <form [formGroup]="loginForm" class="form-container" (keyup.enter)="login()">
+      <div class="mb-4">
+        <lib-input [label]="'mfAuth.login.email-or-password' | transloco"
+          [formControlRef]="loginForm.controls.identifier">
+        </lib-input>
+      </div>
+
+      <div class="mb-4">
+        <lib-input [type]="IInputType.PASSWORD" [label]="'mfAuth.login.password' | transloco"
+          [formControlRef]="loginForm.controls.password">
+        </lib-input>
+      </div>
+
+      <div class="d-flex flex-column align-items-center gap-3">
+        @if (isLoading()) {
+        <lib-spinner />
+        } @else {
+        <button cdkFocusInitial (click)="login()" class="w-100" mat-flat-button color="primary">
+          <span [transloco]="'mfAuth.login.login-button'"></span>
+        </button>
+        <span><span [transloco]="'mfAuth.login.under-login-msg'"></span>
+          <a 
+            class="w-100 underline c-secondary fw-bold" 
+            routerLink="/auth/register" 
+            queryParamsHandling="preserve">
+            <span [transloco]="'mfAuth.login.sign-up'"></span>
+          </a>
+        </span>
+        <a 
+            class="text-center w-100 underline c-secondary fw-bold" 
+            routerLink="/auth/forgot-password">
+            <span [transloco]="'mfAuth.forgot-password.title'"></span>
+          </a>
+        }
+
+      </div>
+    </form>
+  </div>
+</div>

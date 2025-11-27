@@ -1,0 +1,86 @@
+{
+  "my-booking": {
+    "title": "Meus Agendamentos",
+    "initial-date": "Data inicial",
+    "final-date": "Data final",
+    "canceled-event": "Cancelado",
+    "booked-event": "Agendado",
+    "between-times": "as",
+    "no-appointments": "Você nao possui agendamentos nessa data!",
+    "more-appointments": "Carregar mais agendamentos",
+    "cancel-modal": {
+      "title": "Cancelar agendamento",
+      "description": "Tem certeza que deseja cancelar este agendamento?"
+    }
+  },
+  "barbershop-overview": {
+    "book-button": "Agendar",
+    "store": {
+      "org-not-found": "Organização não encontrada"
+    },
+    "services": {
+      "title": "Serviços",
+      "book-button": "Agendar",
+      "search": "Nome do serviço",
+      "no-services": "Serviço não encontrado"
+    },
+    "free-slots": {
+      "next-availability-message": "Infelizmente não temos vagas disponíveis com esse profissional esta semana. Você gostaria de procurar a próxima vaga disponível?",
+      "none-slot-message": "Infelizmente não há vaga disponível com este profissional.",
+      "next-availability-button": "Sim, procure",
+      "best-date-title": "Selecione a melhor data",
+      "date-input": "Data",
+      "professional-title": "Selecione um profissional",
+      "time-title": "Selecione um horário",
+      "next-days-title": "Disponibilidade Semanal",
+      "no-slots-msg": "Nenhum horário disponível nesta data com este profissional",
+      "select-professional-msg": "Escolha um profissional para buscar os horários disponíveis para agendamento",
+      "cancel-button": "Cancelar",
+      "book-button": "Agendar"
+    },
+    "side-bar": {
+      "title-address": "Endereço",
+      "title-business-time": "Horário de funcionamento",
+      "today": "Hoje",
+      "Sunday": "Domingo",
+      "Monday": "Segunda-feira",
+      "Tuesday": "Terça-feira",
+      "Wednesday": "Quarta-feira",
+      "Thursday": "Quinta-feira",
+      "Friday": "Sexta-feira",
+      "Saturday": "Sábado",
+      "title-payments": "Métodos de pagamento",
+      "title-contacts": "Contatos",
+      "close": "Fechado"
+    }
+  },
+  "my-account": {
+    "main-header": "Perfil",
+    "title": "Informações sobre sua conta",
+    "telephone": "Telefone:",
+    "edit-phone": "Edite o seu telefone",
+    "user-photo": {
+      "title": "Minha foto",
+      "description": "Personalize sua conta!"
+    },
+    "edit-user-photo-modal": {
+      "title": "Edite sua foto de perfil",
+      "label-input-upload": "Carregue sua foto",
+      "upload-hint": "Tamanho max {{size}}MB",
+      "cancel-button": "Cancelar",
+      "upload-button": "Carregar",
+      "success-msg": "Foto atualizada com sucesso"
+    },
+    "edit-user-modal": {
+      "cancel": "Cancelar",
+      "save": "Salvar"
+    }
+  },
+  "search-barbershop": {
+    "hello": "Olá",
+    "search-label": "Encontre um estabelecimento",
+    "search-placeholder": "Pesquise pelo nome",
+    "no-found": "Estabelecimento não encontrado",
+    "load-more": "Carregar mais estabelecimentos"
+  }
+}

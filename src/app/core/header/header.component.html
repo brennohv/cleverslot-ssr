@@ -1,0 +1,94 @@
+<mat-toolbar class="header">
+  <div class="d-flex align-items-center">
+    <img
+      role="button"
+      (click)="navigateBasedOnProfile()"
+      width="200px"
+      src="/assets/icons/logo-white.png"
+      alt=""
+    />
+    <nav class="d-none d-md-flex column-gap-4 ms-4 nav-desktop">
+      @switch (userType()) { @case (UserType.CLIENT) {
+      <a class="underline d-flex align-items-center" routerLink="/">
+        <mat-icon class="me-1">search</mat-icon>
+        <span transloco="header.nav-client-search"></span>
+      </a>
+      <a class="underline d-flex align-items-center" routerLink="/appointments">
+        <mat-icon class="me-1">event_available</mat-icon>
+        <span transloco="header.nav-client-bookings"></span>
+      </a>
+      <a class="underline d-flex align-items-center" routerLink="/my-account">
+        <mat-icon class="me-1">person</mat-icon>
+        <span transloco="header.nav-client-profile"></span>
+      </a>
+      } @case (UserType.PROFESSIONAL) {
+      <a
+        class="underline d-flex align-items-center"
+        [routerLink]="[
+          '/',
+          barberProfile()?.barbershopSlug,
+          'barber',
+          'barber-comissions'
+        ]"
+      >
+        <mat-icon class="me-1">paid</mat-icon>
+        <span transloco="header.nav-professional-commissions"></span>
+      </a>
+      <a
+        class="underline d-flex align-items-center"
+        [routerLink]="['/', barberProfile()?.barbershopSlug, 'barber']"
+      >
+        <mat-icon class="me-1">event</mat-icon>
+        <span transloco="header.nav-professional-schedule"></span>
+      </a>
+      <a
+        class="underline d-flex align-items-center"
+        [routerLink]="[
+          '/',
+          barberProfile()?.barbershopSlug,
+          'barber',
+          'barber-config'
+        ]"
+      >
+        <mat-icon class="me-1">manage_accounts</mat-icon>
+        <span transloco="header.nav-professional-barber-config"></span>
+      </a>
+      } @case (UserType.ADMIN) {
+      <a
+        class="underline d-flex align-items-center"
+        [routerLink]="['/', adminProfile()?.barbershopSlug, 'admin']"
+      >
+        <mat-icon>event</mat-icon>
+        <span transloco="header.nav-admin-schedule"></span>
+      </a>
+      <a
+        class="underline d-flex align-items-center"
+        [routerLink]="[
+          '/',
+          adminProfile()?.barbershopSlug,
+          'admin',
+          'barbershop-config'
+        ]"
+      >
+        <mat-icon>store</mat-icon>
+        <span transloco="header.nav-admin-barbershop-config"></span>
+      </a>
+      <a
+        class="underline d-flex align-items-center"
+        [routerLink]="[
+          '/',
+          adminProfile()?.barbershopSlug,
+          'admin',
+          'subscription'
+        ]"
+      >
+        <mat-icon>paid</mat-icon>
+        <span transloco="header.nav-admin-barbershop-subscription"></span>
+      </a>
+      } }
+    </nav>
+  </div>
+  @defer (on idle) {
+  <app-profile-menu></app-profile-menu>
+  }
+</mat-toolbar>

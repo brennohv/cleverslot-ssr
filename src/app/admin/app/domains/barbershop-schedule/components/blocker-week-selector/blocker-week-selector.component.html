@@ -1,0 +1,12 @@
+<div class="days-container">
+  @for (day of days(); track $index) {
+    <button
+    type="button"
+    class="day"
+    [ngClass]="!!day.selected ? 'selected' : 'default'"
+    (click)="changeSelection(day)"
+  >
+    <span [transloco]="I18N_PREFFIX + day.abbreviation" style="text-transform: uppercase;"></span>
+  </button>
+  }
+</div>

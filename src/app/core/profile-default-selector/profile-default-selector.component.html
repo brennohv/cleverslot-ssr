@@ -1,0 +1,73 @@
+@if (isLoggedIn()) {
+<div class="d-flex align-items-center column-gap-2">
+  <img
+    class="user-icon-lg rounded-circle"
+    [src]="userPhoto() | getImgUrl : '/assets/icons/avatar.svg' "
+    alt="user-icon"
+  />
+  <div class="d-flex flex-column row-gap-1">
+    <span class="font-medium oswald-emphasis">{{ username() }}</span>
+    <span class="font-x-small"><span [transloco]="'profile-menu.' + currentProfile()"></span></span>
+  </div>
+</div>
+}
+<div class="wrapper-items mt-2">
+  <div
+    role="button"
+    class="item"
+    (click)="changeViewEvent.emit(IProfileContentView.LANGUAGE)"
+  >
+    <div>
+      <img
+        class="flag"
+        [src]="
+          currentLang() === 'pt'
+            ? '/assets/icons/portugal.png'
+            : '/assets/icons/reino-unido.png'
+        "
+        alt=""
+      />
+      <span class="font-medium"><span [transloco]="'profile-default-selector.language'"></span></span>
+    </div>
+    <mat-icon>chevron_right</mat-icon>
+  </div>
+  @if (canBePartner()) {
+    <div role="link" class="item" routerLink="/landing-page">
+      <div>
+        <mat-icon>add_business</mat-icon>
+        <span class="font-medium"><span [transloco]="'profile-default-selector.partner'"></span></span>
+      </div>
+      <mat-icon>chevron_right</mat-icon>
+    </div>
+  }
+  @if (isLoggedIn()) {
+    <div
+      *ngIf="shouldShowProfileSelector()"
+      role="button"
+      class="item"
+      (click)="changeViewEvent.emit(IProfileContentView.CHANGE_PROFILE)"
+    >
+    <div>
+      <mat-icon>group</mat-icon>
+      <span class="font-medium"><span [transloco]="'profile-default-selector.profile'"></span></span>
+    </div>
+    <mat-icon>chevron_right</mat-icon>
+  </div>
+
+  <div role="link" class="item" (click)="logout()">
+    <div>
+      <mat-icon>logout</mat-icon>
+      <span class="font-medium"><span [transloco]="'profile-default-selector.logout'"></span></span>
+    </div>
+    <mat-icon>chevron_right</mat-icon>
+  </div>
+  } @else {
+  <div role="link" class="item" routerLink="/auth">
+    <div>
+      <mat-icon>login</mat-icon>
+      <span class="font-medium"><span [transloco]="'profile-default-selector.login'"></span></span>
+    </div>
+    <mat-icon>chevron_right</mat-icon>
+  </div>
+  }
+</div>

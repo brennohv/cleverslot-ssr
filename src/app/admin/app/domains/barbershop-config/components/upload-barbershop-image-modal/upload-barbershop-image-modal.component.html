@@ -1,0 +1,59 @@
+<lib-modal-body
+  [modalTitle]="
+    (data.context === 'logo' ? I18N_PREFFIX_LOGO : I18N_PREFFIX_IMAGE) + 'title'
+      | transloco
+  "
+  [alignActions]="isLoading() ? 'center' : 'end'"
+>
+  <ng-container slot="modal-content">
+    <div class="row-gap-4 d-flex flex-column align-items-center w-100">
+      @if (data.context === 'logo') {
+      <img
+        class="photo-preview rounded-circle"
+        [src]="
+          photoPreview() ? photoPreview() : (barbershopLogo()?.url | getImgUrl)
+        "
+        alt="Barbershop logo"
+      />
+      } @if (data.context === 'image' && photoPreview()) {
+      <img
+        class="photo-preview rounded-circle"
+        [src]="photoPreview()"
+        alt="Barbershop image"
+      />
+      }
+
+      <lib-file-upload-input
+        [hint]="'shared.upload-hint' | transloco : { size: maxSizeInMb }"
+        [label]="
+          (data.context === 'logo' ? I18N_PREFFIX_LOGO : I18N_PREFFIX_IMAGE) +
+            'label-input-upload' | transloco
+        "
+        (filePreviewUrl)="onImageChange($event)"
+        [formControlRef]="profileImgForm"
+        [required]="true"
+      >
+      </lib-file-upload-input>
+    </div>
+  </ng-container>
+  <ng-container slot="modal-actions">
+    @if (isLoading()) {
+    <lib-spinner />
+    } @else {
+    <button mat-button (click)="close()">
+      <span [transloco]="'shared.cancel'"></span>
+    </button>
+    <button
+      [disabled]="profileImgForm.invalid"
+      mat-raised-button
+      (click)="uploadImage()"
+      color="primary"
+      cdkFocusInitial
+    >
+      <span
+        [transloco]="data.context === 'logo' ? 'shared.edit' : 'shared.add'"
+      ></span>
+    </button>
+    }
+  </ng-container>
+</lib-modal-body>

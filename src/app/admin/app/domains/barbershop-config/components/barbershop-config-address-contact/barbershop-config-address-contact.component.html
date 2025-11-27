@@ -1,0 +1,104 @@
+<app-barbershop-config-header 
+  [description]="I18N_PREFFIX_ADDRESS + 'description'" 
+  [title]="I18N_PREFFIX_ADDRESS + 'title'"
+  [icon]="!!address() ? 'edit' : 'add'"
+  (onActionClick)="openModalAddress(!!address() ? 'edit' : 'create')"
+/>
+
+<app-barbershop-config-card>
+    <ng-container slot="card-content">
+      @defer (when isLoaded()) {
+        <div class="d-flex flex-column row-gap-2" [libSpinner]="isLoading()">
+          <section>
+            <div class="d-flex column-gap-2 align-items-center">
+              <strong class="d-flex column-gap-1">
+                <span [transloco]="I18N_PREFFIX_ADDRESS + 'street'"></span>:
+              </strong>
+              <span>{{ address()?.street  }}</span>
+            </div>
+          </section>
+
+          <section>
+            <div class="d-flex column-gap-2 align-items-center">
+              <strong class="d-flex column-gap-1">
+                <span [transloco]="I18N_PREFFIX_ADDRESS + 'number'"></span>:
+              </strong>
+              <span>{{ address()?.number  }}</span>
+            </div>
+          </section>
+
+          <section>
+            <div class="d-flex column-gap-2 align-items-center">
+              <strong class="d-flex column-gap-1">
+                <span [transloco]="I18N_PREFFIX_ADDRESS + 'complement'"></span>:
+              </strong>
+              <span> {{ address()?.complement  }} </span>
+            </div>
+          </section>
+
+          <section>
+            <div class="d-flex column-gap-2 align-items-center">
+              <strong class="d-flex column-gap-1">
+                <span [transloco]="I18N_PREFFIX_ADDRESS + 'postalCode'"></span>:
+              </strong>
+              <span >{{ address()?.postalCode  }}</span>
+            </div>
+          </section>
+
+          <section>
+            <div class="d-flex column-gap-2 align-items-center">
+              <strong class="d-flex column-gap-1">
+                <span [transloco]="I18N_PREFFIX_ADDRESS + 'city'"></span>:
+              </strong>
+              <span >{{ address()?.city  }}</span>
+            </div>
+          </section>
+
+          <section>
+            <div class="d-flex column-gap-2 align-items-center">
+              <strong class="d-flex column-gap-1">
+                <span [transloco]="I18N_PREFFIX_ADDRESS + 'country'"></span>:
+              </strong>
+              <span >{{ address()?.country  }}</span>
+            </div>
+          </section>
+      </div>
+      } @placeholder {
+        <div style="height: 216px" class="d-flex align-items-center justify-content-center">
+          <lib-spinner />
+        </div>
+      }
+        
+    </ng-container>
+</app-barbershop-config-card>
+
+<div class="mt-5">
+  <app-barbershop-config-header 
+  [description]="I18N_PREFFIX_CONTACT + 'description'" 
+  [title]="I18N_PREFFIX_CONTACT + 'title'"
+  (onActionClick)="openModalContact(!!telephone() ? 'edit' : 'create')"
+  [icon]="!!telephone() ? 'edit' : 'add'"
+/>
+</div>
+
+<app-barbershop-config-card >
+    <ng-container slot="card-content">
+      @defer (when isLoaded()) { 
+        <div class="d-flex flex-column row-gap-2" [libSpinner]="isLoading()">
+          <section>
+            <div class="d-flex column-gap-2 align-items-center">
+              <strong class="d-flex column-gap-1">
+                <span [transloco]="I18N_PREFFIX_CONTACT + 'contact'"></span>:
+              </strong>
+              <span>{{ telephone()?.internationalNumber  }}</span>
+            </div>
+          </section>
+      </div>
+      } @placeholder {
+        <div style="height: 60px" class="d-flex align-items-center justify-content-center">
+          <lib-spinner />
+        </div>
+      }
+      
+    </ng-container>
+</app-barbershop-config-card>

@@ -1,0 +1,63 @@
+<div clickOutside (onClickOutside)="closeMenu()">
+  <div
+    (click)="toggleMenu()"
+    class="d-flex align-items-center justify-content-center"
+    role="button"
+  >
+    <img
+      class="user-icon rounded-circle"
+      [src]="userPhoto() | getImgUrl:'/assets/icons/avatar.svg' "
+      alt="user-icon"
+    />
+    @if (!!isLoggedIn()) {
+    <div class="d-none d-md-flex flex-column ms-2 me-1 row-gap-1">
+      <span class="font-medium oswald-emphasis c-ligth-primary-text">{{
+        username()
+      }}</span>
+      <span class="font-x-small c-ligth-primary-text"><span [transloco]="'profile-menu.' + currentProfile()"></span></span>
+    </div>
+    }
+    <mat-icon class="c-ligth-primary-text">arrow_drop_down</mat-icon>
+  </div>
+  <ng-container *ngIf="isOpenMenu()">
+    <div
+      class="content-transition-container menu rounded"
+      [style]="'height: ' + (contentHeight$ | async)"
+    >
+      <div #containerResize class="p-3" (click)="stopPropagation($event)">
+        @switch (contentView()) { 
+            @case (IProfileContentView.DEFAULT) {
+                <ng-container *ngTemplateOutlet="defaultContent"></ng-container>
+            } @case (IProfileContentView.LANGUAGE) {
+                <ng-container *ngTemplateOutlet="language"></ng-container>
+            } @case (IProfileContentView.CHANGE_PROFILE) {
+              <ng-container *ngTemplateOutlet="changeProfile"></ng-container>
+            } 
+        }
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #defaultContent>
+    <app-profile-default-selector
+      [currentProfile]="currentProfile()" 
+      (changeViewEvent)="changeView($event)">
+    </app-profile-default-selector>
+  </ng-template>
+
+  <ng-template #language>
+    <app-profile-language-selector
+      (closeModalEvent)="closeMenu()"
+      (changeViewEvent)="changeView($event)"
+    >
+    </app-profile-language-selector>
+  </ng-template>
+
+  <ng-template #changeProfile>
+    <app-profile-selector
+      (closeModalEvent)="closeMenu()"
+      (changeViewEvent)="changeView($event)"
+    >
+    </app-profile-selector>
+  </ng-template>
+</div>

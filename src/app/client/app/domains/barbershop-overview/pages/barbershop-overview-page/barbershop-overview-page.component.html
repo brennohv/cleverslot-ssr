@@ -1,0 +1,86 @@
+@if (!isLoaded()) {
+<lib-spinner />
+} @else {
+<div class="container" *ngIf="barbershop()">
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <mat-card class="mb-4">
+        <mat-card-content>
+          <div
+            class="d-flex pb-3 column-gap-3 justify-content-between align-items-center"
+          >
+            <div class="d-flex align-items-center column-gap-3">
+              <span>
+                <img
+                  class="barbershop-logo rounded-circle"
+                  [src]="barbershop.logo()?.url | getImgUrl"
+                  alt="logo"
+                />
+              </span>
+              <h3>{{ barbershop.name() }}</h3>
+            </div>
+            <div>
+              <button
+                (click)="scrollToServices(services)"
+                mat-raised-button
+                color="primary"
+                class="animated-pulse"
+              >
+                <mat-icon class="animated-icon-pulse">event_upcoming</mat-icon>
+                <span [transloco]="'mfClient.barbershop-overview.book-button'"></span>
+              </button>
+            </div>
+          </div>
+          <mat-divider class="mb-4"></mat-divider>
+          @if (barbershop.images()) {
+          <div class="container-carousel">
+            <owl-carousel-o [options]="customOptions">
+              @for (slide of barbershop.images(); track $index; let first =
+              $first) {
+              <ng-container>
+                <ng-template carouselSlide>
+                  <img
+                    [loading]="first ? 'eager' : 'lazy'"
+                    alt="Barbershop image"
+                    mat-card-image
+                    class="img-carousel"
+                    [src]="slide.url | getImgUrl"
+                  />
+                </ng-template>
+              </ng-container>
+              } @empty {
+              <ng-container>
+                <ng-template carouselSlide>
+                  <img
+                    loading="eager"
+                    alt="Barbershop image"
+                    mat-card-image
+                    class="img-carousel"
+                    src="/assets/icons/cleverslot-high-resolution-logo.png"
+                  />
+                </ng-template>
+              </ng-container>
+              }
+            </owl-carousel-o>
+          </div>
+          <mat-divider class="mt-4 mb-4"></mat-divider>
+          }
+
+          <div #services>
+            <app-barbershop-overview-services
+              [barbershopId]="barbershop.documentId()"
+              [barbershopSlug]="barbershop.slug()"
+            >
+            </app-barbershop-overview-services>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-12 col-md-4">
+      <app-barbershop-overview-sidebar
+        [barbershop]="barbershop()"
+      ></app-barbershop-overview-sidebar>
+    </div>
+  </div>
+</div>
+}

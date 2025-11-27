@@ -1,0 +1,33 @@
+<div class="font-medium">
+  <nav
+    class="d-flex align-items-center collumn-gap-1 cursor-pointer"
+    (click)="changeViewEvent.emit(IProfileContentView.DEFAULT)"
+  >
+    <mat-icon>chevron_left</mat-icon>
+    <strong><span [transloco]="'language-selector.title'"></span></strong>
+  </nav>
+</div>
+<div class="wrapper-items mt-2">
+  <div role="button" class="item" (click)="setLanguage('pt')">
+    <div>
+      <img class="flag" src="/assets/icons/portugal.png" alt="Portugal flag" loading="eager"/>
+      <span class="font-medium"><span [transloco]="'language-selector.portuguese-label'"></span></span>
+    </div>
+    @if (currentLang() === 'pt') {
+    <mat-icon class="text-success">check</mat-icon>
+    } @else {
+    <mat-icon>chevron_right</mat-icon>
+    }
+  </div>
+  <div role="button" class="item" (click)="setLanguage('en')">
+    <div>
+      <img class="flag" src="/assets/icons/reino-unido.png" alt="United kingdom flag" loading="eager"/>
+      <span class="font-medium"><span [transloco]="'language-selector.english-label'"></span></span>
+    </div>
+    @if (currentLang() === 'en') {
+    <mat-icon class="text-success">check</mat-icon>
+    } @else {
+    <mat-icon>chevron_right</mat-icon>
+    }
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<lib-modal-body 
+[modalTitle]="
+contentView() === ContentView.DELETE_BLOCKER
+  ? (I18N_PREFFIX + 'delete-title' | transloco)
+  : ''
+"
+  [alignActions]="isCreationScheduleBlockerLoading() ? 'center' : 'end'">
+  <ng-container slot="modal-content">
+    @switch (contentView()) {
+      @case (ContentView.DEFAULT) {
+        <form class="d-flex flex-column row-gap-3">
+          <!-- Date section -->
+          <strong ><span [transloco]="I18N_PREFFIX + 'date-title'"></span></strong>
+          <div class="d-flex flex-column flex-md-row row-gap-2 column-gap-2">
+            <lib-date-picker-input
+              [formControlRef]="blockerForm.controls.startDate" 
+              [label]="I18N_PREFFIX + 'date-start' | transloco">
+            </lib-date-picker-input>
+
+            <lib-date-picker-input
+              [minDate]="minEndDate()!"
+              [formControlRef]="blockerForm.controls.endDate" 
+              [label]="I18N_PREFFIX + 'date-end' | transloco">
+            </lib-date-picker-input>
+          </div>
+        
+          <!-- Time section -->
+          <strong ><span [transloco]="I18N_PREFFIX + 'time-title'"></span></strong>
+          <div class="d-flex flex-column flex-md-row row-gap-2 column-gap-2">
+            <lib-input [formControlRef]="blockerForm.controls.startTime" [label]="I18N_PREFFIX + 'time-start' | transloco" [type]="IInputType.TIME" />
+            <lib-input [formControlRef]="blockerForm.controls.endTime" [label]="I18N_PREFFIX + 'time-end' | transloco" [type]="IInputType.TIME" />
+          </div>
+        
+          <!-- Days of Week section -->
+          <strong ><span [transloco]="I18N_PREFFIX + 'day-of-week-title'"></span></strong>
+          <div class="d-flex column-gap-2">
+            <app-blocker-week-selector [days]="defaultDays()" (selectedDaysChange)="setDaysOfWeek($event)"/>
+          </div>
+        </form>
+      }
+      @case (ContentView.DELETE_BLOCKER) {
+        <span><span [transloco]="I18N_PREFFIX + 'delete-msg'"></span></span>
+        <br>
+        <span><span [transloco]="I18N_PREFFIX + 'delete-warning'"></span></span>
+      }
+    }
+  </ng-container>
+
+  <ng-container slot="modal-actions">
+    @if (isCreationScheduleBlockerLoading()) { 
+      <lib-spinner></lib-spinner>
+    } @else { 
+      @switch (contentView()) { 
+        @case (ContentView.DEFAULT) {
+          <button mat-button (click)="close()"><span [transloco]="I18N_PREFFIX + 'close'"></span></button>
+          @if (isEditMode) {
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="changeContentView(ContentView.DELETE_BLOCKER)"
+            >
+              <mat-icon>delete</mat-icon>
+              <span [transloco]="I18N_PREFFIX + 'delete'"></span>
+            </button>
+          }
+          <button
+            [disabled]="blockerForm.invalid"
+            mat-raised-button
+            (click)="isEditMode ? editBlocker() : createBlocker()"
+            color="primary"
+            cdkFocusInitial
+          >
+            <span [transloco]="I18N_PREFFIX + (isEditMode ? 'edit' : 'block')"></span>
+          </button>
+        }
+
+        @case (ContentView.DELETE_BLOCKER) {
+          <button mat-button (click)="changeContentView(ContentView.DEFAULT)">
+            <span [transloco]="'shared.no'"></span>
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="deleteBlocker()"
+            cdkFocusInitial
+          >
+          <span [transloco]="'shared.yes'"></span>
+          </button>
+        }
+      }
+    }
+  </ng-container>
+</lib-modal-body>
+  

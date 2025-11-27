@@ -1,0 +1,47 @@
+<lib-modal-body
+  [modalTitle]="I18N_PREFFIX + 'title' | transloco"
+  [alignActions]="uploadFileLoading() ? 'center' : 'end'"
+>
+  <ng-container slot="modal-content">
+    <div class="row-gap-4 d-flex flex-column align-items-center w-100">
+      <img
+        class="photo-preview rounded-circle"
+        [src]="
+          photoPreview()
+            ? photoPreview()
+            : (userPhoto() | getImgUrl : '/assets/icons/avatar.svg')
+        "
+        alt="user-icon"
+      />
+      <lib-file-upload-input
+        [hint]="
+          I18N_PREFFIX + 'upload-hint' | transloco : { size: maxSizeInMb }
+        "
+        [label]="I18N_PREFFIX + 'label-input-upload' | transloco"
+        (filePreviewUrl)="onImageChange($event)"
+        [formControlRef]="profileImgForm"
+        [required]="true"
+      >
+      </lib-file-upload-input>
+    </div>
+  </ng-container>
+  <ng-container slot="modal-actions">
+    @if (uploadFileLoading()) {
+      <lib-spinner />
+    } @else {
+      <button mat-button (click)="close()">
+        <span [transloco]="I18N_PREFFIX + 'cancel-button'"></span>
+      </button>
+      <button
+        [disabled]="profileImgForm.invalid"
+        mat-raised-button
+        (click)="uploadImage()"
+        color="primary"
+        cdkFocusInitial
+      >
+        <span [transloco]="I18N_PREFFIX + 'upload-button'"></span>
+      </button>
+    }
+    
+  </ng-container>
+</lib-modal-body>

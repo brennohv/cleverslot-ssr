@@ -1,0 +1,42 @@
+<lib-modal-body alignActions="end">
+  <ng-container slot="modal-content">
+    <form class="d-flex flex-column">
+      <!-- Date section -->
+      <div class="row mb-4">
+        <h4>
+          <span
+            [transloco]="
+              I18N_PREFFIX + (isEditMode() ? 'title-edit' : 'title-add')
+            "
+          ></span>
+        </h4>
+      </div>
+      <div class="row row-gap-2">
+        <div class="col-lg-12">
+          <lib-input
+            placeholder="Name"
+            [label]="I18N_PREFFIX + 'name-label' | transloco"
+            [formControlRef]="paymentFormControl"
+            [required]="true"
+          >
+          </lib-input>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container slot="modal-actions">
+    <button mat-button (click)="close()">
+      <span [transloco]="'shared.cancel'"></span>
+    </button>
+    <button
+      [disabled]="paymentFormControl.invalid"
+      mat-raised-button
+      (click)="createEditPayment()"
+      color="primary"
+      cdkFocusInitial
+    >
+      <span [transloco]="isEditMode() ? 'shared.edit' : 'shared.create'"></span>
+    </button>
+  </ng-container>
+</lib-modal-body>

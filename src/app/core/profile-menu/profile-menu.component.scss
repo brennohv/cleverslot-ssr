@@ -1,0 +1,33 @@
+.user-icon {
+    max-width: 35px;
+    width: 35px;
+    aspect-ratio: 1;
+    object-fit: cover;
+
+    &-lg {
+        max-width: 48px;
+        width: 48px;
+        aspect-ratio: 1;
+        object-fit: cover;
+    }
+}
+
+.content-transition-container {
+    overflow-x: hidden;
+    transition: height 0.3s ease-in-out, max-height 0.3s ease-in-out;
+  }
+
+.menu {
+    min-width: 320px;
+    position: fixed;
+    right: 5px;
+    top: var(--mat-toolbar-standard-height);
+    z-index: 3;
+    background-color: #f8f9fa;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, .6);
+
+    @media (max-width: 599px) {
+        top: var(--mat-toolbar-mobile-height);
+    }
+}
+

@@ -1,0 +1,19 @@
+[build]
+  command = "npm run build"
+  ignore="exit 1" ## always build, there might be changes in the plugin
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://typical-cheese-f4c89ba13c.strapiapp.com/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/graphql"
+  to = "https://typical-cheese-f4c89ba13c.strapiapp.com/graphql"
+  status = 200
+  force = true
+
+[[plugins]]
+  package="@netlify/angular-runtime"
+

@@ -1,0 +1,14 @@
+.main-content {
+    margin-top: 50px;
+    padding-bottom: 100px;
+    box-sizing: initial;
+
+    @media (max-width: 599px) {
+        margin-top: 30px;
+    }
+
+    &.isLandingPage {
+        margin-top: 0px;
+        padding-bottom: 0px;
+    }
+}

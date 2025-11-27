@@ -1,0 +1,14 @@
+{
+  "/api": {
+    "target": "https://typical-cheese-f4c89ba13c.strapiapp.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/graphql": {
+    "target": "https://typical-cheese-f4c89ba13c.strapiapp.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

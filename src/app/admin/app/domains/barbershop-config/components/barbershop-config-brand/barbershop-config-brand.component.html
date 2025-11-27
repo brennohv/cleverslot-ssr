@@ -1,0 +1,122 @@
+<app-barbershop-config-header 
+  [description]="I18N_PREFFIX + 'description'" 
+  [title]="I18N_PREFFIX + 'title'"
+  [hasAction]="false"
+/>
+
+<app-barbershop-config-card>
+    <ng-container slot="card-content">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex flex-column">
+              <h4><span [transloco]="I18N_PREFFIX + 'upload-logo.title'"></span></h4>
+              <span><span [transloco]="I18N_PREFFIX + 'upload-logo.description'"></span></span>
+            </div>
+            @defer (when isLoaded()) {
+              <div
+              (click)="openUploadLogoModal()"
+              class="position-relative cursor-pointer"
+              role="presentation"
+            >
+              <img
+                class="logo-icon rounded-circle"
+                [src]="barbershopLogo()?.url| getImgUrl"
+                alt="user-icon"
+              />
+              <div class="logo-overlay opacity-75">
+                <mat-icon>add_a_photo</mat-icon>
+              </div>
+            </div>
+            } @placeholder (minimum 500ms) {
+              <ngx-skeleton-loader appearance="circle" [theme]="{height: '90px', width: '90px'}"  count="1" />
+            }
+            
+          </div>
+    </ng-container>
+</app-barbershop-config-card>
+
+<app-barbershop-config-card>
+  <ng-container slot="card-content">
+      <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex flex-column">
+            <h4><span [transloco]="I18N_PREFFIX + 'name'"></span></h4>
+            @defer (when isLoaded()) {
+              <span>{{ barbershopName() }}</span>
+            } @placeholder(minimum  500ms) {
+              <ngx-skeleton-loader appearance="line" [theme]="{height: '24px', width: '150px'}"  count="1" />
+            }
+          </div>
+          <button color="primary" mat-mini-fab aria-label="Edit name" (click)="openEditBarbershopName()">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+  </ng-container>
+</app-barbershop-config-card>
+
+<app-barbershop-config-card>
+  <ng-container slot="card-content">
+      <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex flex-column">
+            <div class="d-flex column-gap-1 align-items-center mb-2">
+              <h4 class="mb-0"><span [transloco]="I18N_PREFFIX + 'establishment-url'"></span></h4>
+              <mat-icon>link</mat-icon>
+            </div>
+            @defer (when isLoaded()) {
+              <span>{{ estabilishmentUrl() }}</span>
+            } @placeholder(minimum  500ms) {
+              <ngx-skeleton-loader appearance="line" [theme]="{height: '24px', width: '150px'}"  count="1" />
+            }
+          </div>
+          <button color="primary" mat-mini-fab aria-label="Copy URL" (click)="clipBoardSetup()">
+            <mat-icon>{{ shouldShowSuccessMessageX() ? 'task' : 'content_copy' }}</mat-icon>
+          </button>
+        </div>
+  </ng-container>
+</app-barbershop-config-card>
+
+<app-barbershop-config-card>
+  <ng-container slot="card-content">
+      <div class="d-flex flex-column row-gap-4">
+        <div class="d-flex flex-column">
+          <h4><span [transloco]="I18N_PREFFIX + 'images'"></span></h4>
+          <span><span [transloco]="I18N_PREFFIX + 'image-description'"></span></span>
+        </div>
+        <div class="d-flex column-gap-2">
+          @defer (when isLoaded()) {
+            @for (image of barbershopImages(); track $index) {
+              <div
+                (click)="deleteImage(image.id)"
+                class="position-relative cursor-pointer"
+                role="presentation"
+              >
+                <img
+                  class="logo-icon rounded"
+                  [src]="image?.url| getImgUrl"
+                  alt="user-icon"
+                />
+                <div class="image-overlay opacity-75 rounded">
+                  <mat-icon>delete</mat-icon>
+                </div>
+              </div>
+            }
+  
+            @if (canAddMoreImages()) {
+              <div
+                (click)="openUploadImageModal()"
+                class="position-relative cursor-pointer"
+                role="presentation"
+              >
+              <div class="add-more opacity-75 rounded">
+                <mat-icon>add</mat-icon>
+              </div>
+            </div>
+            }
+          } @placeholder (minimum 500ms)  {
+            @for (item of [1,2,3,4,5]; track $index) {
+              <ngx-skeleton-loader appearance="line" [theme]="{height: '90px', width: '90px'}"  count="1" />
+            }
+          }
+          
+        </div>
+      </div>
+  </ng-container>
+</app-barbershop-config-card>

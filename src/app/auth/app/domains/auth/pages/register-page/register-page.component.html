@@ -1,0 +1,47 @@
+<div class="d-flex row login-container">
+    <div class="background-image col-6 d-none d-md-block"></div>
+    <div class="col-12 col-md-6 login-content d-flex flex-column align-items-center justify-content-center">
+        <h4><span [transloco]="'mfAuth.register.title'"></span></h4>
+        <form [formGroup]="registerForm" class="form-container" (keyup.enter)="register()">
+            <div class="mb-3">
+                <lib-input [type]="IInputType.EMAIL" [label]="'mfAuth.register.email' | transloco"
+                    [formControlRef]="registerForm.controls.email">
+                </lib-input>
+            </div>
+            <div class="mb-3">
+                <lib-input [label]="'mfAuth.register.username' | transloco"
+                    [formControlRef]="registerForm.controls.username">
+                </lib-input>
+            </div>
+            <div class="mb-3">
+                <lib-telephone-input inputId="firstTelephone" [placeholder]="'mfAuth.register.telephone' | transloco"
+                    [formControlRef]="registerForm.controls.telephone">
+                </lib-telephone-input>
+            </div>
+            <div class="mb-3">
+                <lib-input [type]="IInputType.PASSWORD" [label]="'mfAuth.register.password' | transloco"
+                    [formControlRef]="registerForm.controls.password">
+                </lib-input>
+            </div>
+            <div class="mb-3">
+                <lib-input [type]="IInputType.PASSWORD" [label]="'mfAuth.register.confirm-passoword' | transloco"
+                    [formControlRef]="registerForm.controls.confirmPassword">
+                </lib-input>
+            </div>
+            @if (isLoading()) {
+            <lib-spinner />
+            } @else {
+            <div class="d-flex flex-column align-items-center gap-3">
+                <button cdkFocusInitial (click)="register()" class="w-100" mat-flat-button color="primary">
+                    <span [transloco]="'mfAuth.register.register-button'"></span>
+                </button>
+                <span><span [transloco]="'mfAuth.register.under-register-msg'"></span>
+                    <a class="w-100 underline c-secondary fw-bold" routerLink="auth/login"
+                        queryParamsHandling="preserve"><span [transloco]="'mfAuth.register.sign-in'"></span>
+                    </a>
+                </span>
+            </div>
+            }
+        </form>
+    </div>
+</div>

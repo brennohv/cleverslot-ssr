@@ -1,0 +1,86 @@
+{
+  "my-booking": {
+    "title": "My Bookings",
+    "initial-date": "Initial date",
+    "final-date": "Final date",
+    "canceled-event": "Canceled",
+    "booked-event": "Booked",
+    "between-times": "to",
+    "no-appointments": " You don't have any appointments on this date!",
+    "more-appointments": "Load more appointments",
+    "cancel-modal": {
+      "title": "Cancel booking",
+      "description": "Are you sure you want to cancel this booking?"
+    }
+  },
+  "barbershop-overview": {
+    "book-button": "Book",
+    "store": {
+      "org-not-found": "Organization not found"
+    },
+    "services": {
+      "title": "Services",
+      "book-button": "Book",
+      "search": "Service name",
+      "no-services": "Service not found"
+    },
+    "free-slots": {
+      "next-availability-message": "Unfortunately we do not have available slots with this professional this week, would you like to search for the next available slot?",
+      "none-slot-message": "Unfortunately there is no slot available with this professional.",
+      "next-availability-button": "Yes, search",
+      "best-date-title": "Select the best date",
+      "date-input": "Date",
+      "professional-title": "Select a professional",
+      "time-title": "Select a time",
+      "next-days-title": "Weekly Slot Availability",
+      "no-slots-msg": "No available time slots on this date with this professional",
+      "select-professional-msg": "Choose a professional to find available booking times",
+      "cancel-button": "Cancel",
+      "book-button": "Book"
+    },
+    "side-bar": {
+      "title-address": "Address",
+      "title-business-time": "Business hours",
+      "today": "Today",
+      "Sunday": "Sunday",
+      "Monday": "Monday",
+      "Tuesday": "Tuesday",
+      "Wednesday": "Wednesday",
+      "Thursday": "Thursday",
+      "Friday": "Friday",
+      "Saturday": "Saturday",
+      "title-payments": "Payment methods",
+      "title-contacts": "Contact",
+      "close": "Closed"
+    }
+  },
+  "my-account": {
+    "main-header": "Profile",
+    "title": "Information about your account",
+    "telephone": "Telephone:",
+    "edit-phone": "Edit your telephone",
+    "user-photo": {
+      "title": "My photo",
+      "description": "Customize your account!"
+    },
+    "edit-user-photo-modal": {
+      "title": "Edit your image profile",
+      "label-input-upload": "Upload you photo",
+      "upload-hint": "Max size {{size}}MB",
+      "cancel-button": "Cancel",
+      "upload-button": "Upload",
+      "success-msg": "Photo updated successfully"
+    },
+    "edit-user-modal": {
+      "cancel": "Cancel",
+      "save": "Save"
+    }
+  },
+  "search-barbershop": {
+    "hello": "Hello",
+    "search-label": "Find an establishment",
+    "search-placeholder": "Search by name",
+    "no-found": "Establishment not found",
+    "load-more": "Load more establishments"
+  }
+}

@@ -1,0 +1,87 @@
+<lib-modal-body alignActions="end">
+  <ng-container slot="modal-content">
+    <form class="d-flex flex-column">
+      <!-- Date section -->
+      <div class="row mb-4">
+        <h4>
+          <span
+            [transloco]="
+              I18N_PREFFIX + (isEditMode() ? 'title-edit' : 'title-add')
+            "
+          ></span>
+        </h4>
+      </div>
+      <div class="row row-gap-2">
+        <div class="col-lg-6 col-12">
+          <lib-input
+            [placeholder]="I18N_PREFFIX + 'street' | transloco"
+            [label]="I18N_PREFFIX + 'street' | transloco"
+            [formControlRef]="newAddressForm.controls.street"
+          >
+          </lib-input>
+        </div>
+        <div class="col-lg-3 col-6">
+          <lib-input
+            [type]="IInputType.NUMBER"
+            [placeholder]="I18N_PREFFIX + 'number' | transloco"
+            [label]="I18N_PREFFIX + 'number' | transloco"
+            [formControlRef]="newAddressForm.controls.number"
+          >
+          </lib-input>
+        </div>
+
+        <div class="col-lg-3 col-6">
+          <lib-input
+            [placeholder]="I18N_PREFFIX + 'complement' | transloco"
+            [label]="I18N_PREFFIX + 'complement' | transloco"
+            [formControlRef]="newAddressForm.controls.complement"
+          >
+          </lib-input>
+        </div>
+      </div>
+      <div class="row row-gap-2">
+        <div class="col-lg-6 col-12">
+          <lib-input
+            [placeholder]="I18N_PREFFIX + 'postalCode' | transloco"
+            [label]="I18N_PREFFIX + 'postalCode' | transloco"
+            [formControlRef]="newAddressForm.controls.postalCode"
+          >
+          </lib-input>
+        </div>
+        <div class="col-lg-6 col-12">
+          <lib-input
+            [placeholder]="I18N_PREFFIX + 'city' | transloco"
+            [label]="I18N_PREFFIX + 'city' | transloco"
+            [formControlRef]="newAddressForm.controls.city"
+          >
+          </lib-input>
+        </div>
+      </div>
+      <div class="row row-gap-2">
+        <div class="col-lg-6 col-8">
+          <lib-input
+            [placeholder]="I18N_PREFFIX + 'country' | transloco"
+            [label]="I18N_PREFFIX + 'country' | transloco"
+            [formControlRef]="newAddressForm.controls.country"
+          >
+          </lib-input>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container slot="modal-actions">
+    <button mat-button (click)="close()">
+      <span [transloco]="'shared.cancel'"></span>
+    </button>
+    <button
+      [disabled]="newAddressForm.invalid"
+      mat-raised-button
+      (click)="createEditAddress()"
+      color="primary"
+      cdkFocusInitial
+    >
+      <span [transloco]="isEditMode() ? 'shared.edit' : 'shared.create'"></span>
+    </button>
+  </ng-container>
+</lib-modal-body>

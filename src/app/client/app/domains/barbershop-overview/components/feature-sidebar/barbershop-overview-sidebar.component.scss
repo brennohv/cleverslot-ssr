@@ -1,0 +1,29 @@
+.business-hour-content {
+    display: flex;
+}
+
+.day-row {
+    min-height: 50px;
+}
+
+.today {
+    .time, .day {
+        font-weight: 600;
+    }
+}
+
+.time {
+    font-size: 14px;
+}
+
+::ng-deep {
+    .mdc-evolution-chip__text-label {
+        display: flex;
+    }
+}
+
+.whatsapp-container {
+    img {
+        width: 24px;
+    }
+}

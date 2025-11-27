@@ -1,0 +1,6 @@
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+    @media (max-width: 599px) {
+      --mat-dialog-container-small-max-width: 90vw;
+      max-width: var(--mat-dialog-container-small-max-width, 90vw);
+    }
+  }

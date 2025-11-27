@@ -1,0 +1,6 @@
+{
+  "mf-client-barbershop": "/dist/mf-client/remoteEntry.json",
+  "mf-auth-barbershop": "/dist/mf-auth/remoteEntry.json",
+  "mf-barber-barbershop": "/dist/mf-barber/remoteEntry.json",
+  "mf-admin-barbershop": "/dist/mf-admin/remoteEntry.json"
+}

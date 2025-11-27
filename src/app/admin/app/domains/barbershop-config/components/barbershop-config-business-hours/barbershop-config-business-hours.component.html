@@ -1,0 +1,146 @@
+<app-barbershop-config-header
+  [description]="I18N_PREFFIX + 'description'"
+  [title]="I18N_PREFFIX + 'title'"
+>
+  <ng-container slot="action-content">
+    <div>
+      <button
+        [disabled]="businnesHoursForm.invalid"
+        mat-raised-button
+        aria-label="Save Business Hours"
+        color="accent"
+        (click)="saveChanges()"
+      >
+        Save
+      </button>
+    </div>
+  </ng-container>
+</app-barbershop-config-header>
+
+<app-barbershop-config-card>
+  <ng-container slot="card-content">
+    <div class="mb-4 wrapper-grid">
+      <div class="fw-bold"><span [transloco]="I18N_PREFFIX + 'day'"></span></div>
+      <div class="fw-bold"><span [transloco]="I18N_PREFFIX + 'status'"></span></div>
+      <div class="fw-bold"><span [transloco]="I18N_PREFFIX + 'first-period'"></span></div>
+      <div class="fw-bold"><span [transloco]="I18N_PREFFIX + 'second-period'"></span></div>
+    </div>
+    <form #businnesHoursForm="ngForm">
+      @defer (when isLoaded()) {
+      <div [libSpinner]="isLoading()">
+        @for (dayObj of businessHours(); track $index; let last = $last) {
+        <div class="wrapper-grid align-items-center">
+          <div [class.transform-item]="dayObj.active"><span [transloco]="'shared.' + dayObj.day"></span></div>
+          <div [class.transform-item]="dayObj.active">
+            <mat-slide-toggle
+              (toggleChange)="enableDisableBusinessHour(dayObj)"
+              [checked]="dayObj.active"
+            ></mat-slide-toggle>
+          </div>
+          @if(dayObj.active) {
+            <div class="d-flex column-gap-2">
+              <div class="wrapper-input">
+                <lib-input
+                  [name]="dayObj.day + '-firstPeriodStart'"
+                  [required]="true"
+                  [ngModel]="dayObj.firstPeriodStart"
+                  (ngModelChange)="
+                    onChangeBusinessHour($event, dayObj.day, 'firstPeriodStart')
+                  "
+                  [type]="IInputType.TIME"
+                  [placeholder]="I18N_PREFFIX + 'from-label' | transloco"
+                  [label]="I18N_PREFFIX + 'from-label' | transloco"
+                >
+                </lib-input>
+              </div>
+              <div class="wrapper-input">
+                <lib-input
+                  [name]="dayObj.day + '-firstPeriodEnd'"
+                  [required]="true"
+                  [ngModel]="dayObj.firstPeriodEnd"
+                  (ngModelChange)="
+                    onChangeBusinessHour($event, dayObj.day, 'firstPeriodEnd')
+                  "
+                  [type]="IInputType.TIME"
+                  [placeholder]="I18N_PREFFIX + 'number' | transloco"
+                  [label]="I18N_PREFFIX + 'to-label' | transloco"
+                >
+                </lib-input>
+              </div>
+            </div>
+
+            @if(dayObj.secondPeriodActive) {
+              <div class="d-flex column-gap-2">
+                <div class="wrapper-input">
+                  <lib-input
+                    [required]="true"
+                    [name]="dayObj.day + '-secondPeriodStart'"
+                    [ngModel]="dayObj.secondPeriodStart"
+                    (ngModelChange)="
+                      onChangeBusinessHour($event, dayObj.day, 'secondPeriodStart')
+                    "
+                    [type]="IInputType.TIME"
+                    [placeholder]="I18N_PREFFIX + 'number' | transloco"
+                    [label]="I18N_PREFFIX + 'from-label' | transloco"
+                  >
+                  </lib-input>
+                </div>
+                <div class="wrapper-input">
+                  <lib-input
+                    [required]="true"
+                    [name]="dayObj.day + '-secondPeriodEnd'"
+                    [ngModel]="dayObj.secondPeriodEnd"
+                    (ngModelChange)="
+                      onChangeBusinessHour($event, dayObj.day, 'secondPeriodEnd')
+                    "
+                    [type]="IInputType.TIME"
+                    [placeholder]="I18N_PREFFIX + 'number' | transloco"
+                    [label]="I18N_PREFFIX + 'to-label' | transloco"
+                  >
+                  </lib-input>
+                </div>
+                <div class="mt-2">
+                  <button
+                    mat-mini-fab
+                    aria-label="Delete Business Hours"
+                    color="warn"
+                    (click)="enableSecondPeriodBusinessHour(dayObj)"
+                  >
+                    <mat-icon >delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+              
+            } @else {
+              <div class="mt-2 transform-button">
+                <button
+                  mat-mini-fab
+                  aria-label="Add Business Hours"
+                  color="accent"
+                  (click)="enableSecondPeriodBusinessHour(dayObj)"
+                >
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            }
+          }
+        </div>
+        @if (!last) {
+        <div class="row mt-1 mb-4" [class.mt-4]="!dayObj.active">
+          <div class="col-12">
+            <mat-divider />
+          </div>
+        </div>
+        } }
+      </div>
+      } @placeholder {
+      <div
+        style="height: 542px"
+        class="d-flex align-items-center justify-content-center"
+      >
+        <lib-spinner />
+      </div>
+      }
+    </form>
+  </ng-container>
+</app-barbershop-config-card>

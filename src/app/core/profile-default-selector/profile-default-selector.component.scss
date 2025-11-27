@@ -1,0 +1,45 @@
+.user-icon {
+  max-width: 35px;
+  height: 35px;
+  width: 35px;
+  aspect-ratio: 1;
+  object-fit: cover;
+
+  &-lg {
+    max-width: 48px;
+    height: 48px;
+    width: 48px;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+}
+
+.wrapper-items {
+  border: 1px solid #efefef;
+  border-radius: 8px;
+
+  .item {
+    cursor: pointer;
+    min-height: 52px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    &:not(:first-of-type) {
+      border-top: 1px solid #efefef;
+    }
+
+    .flag {
+      max-width: 24px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

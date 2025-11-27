@@ -1,0 +1,32 @@
+{
+  "login": {
+    "email-or-password": "Email / Username",
+    "password": "Senha",
+    "login-button": "Login",
+    "under-login-msg": "Não possui uma conta?",
+    "sign-up": "Cadastre-se"
+  },
+  "register": {
+    "title": "Cadastro",
+    "email": "Email",
+    "username": "Username",
+    "telephone": "Telefone",
+    "password": "Senha",
+    "confirm-passoword": "Confirme a senha",
+    "register-button": "Cadastrar",
+    "under-register-msg": "Ja tem uma conta? ",
+    "sign-in": "Acesse"
+  },
+  "forgot-password": {
+    "title": "Esqueci minha senha",
+    "description": "Uma email será enviado para você",
+    "forgot-button": "Enviar email",
+    "success-message": "Email enviado com sucesso"
+  },
+  "reset-password": {
+    "title": "Resetar palavra passe",
+    "password": "Palavra passe",
+    "confirm-passoword": "Confirme a palavra passe",
+    "success-message": "Palavra passe resetada com sucesso"
+  }
+}

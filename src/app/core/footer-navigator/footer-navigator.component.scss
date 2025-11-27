@@ -1,0 +1,25 @@
+.footer-navigator-content {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+:host {
+    ::ng-deep {
+        .mdc-tab__text-label {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            line-height: 14px;
+        }
+        
+    }
+} 
+
+.hidden-footer {
+    transform: translate3d(0px, 48px, 0px);
+}

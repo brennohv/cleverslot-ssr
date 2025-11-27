@@ -1,0 +1,15 @@
+.user-icon {
+    max-width: 35px;
+    height: 35px;
+    width: 35px;
+    aspect-ratio: 1;
+    object-fit: cover;
+
+    &-lg {
+        max-width: 48px;
+        height: 48px;
+        width: 48px;
+        aspect-ratio: 1;
+        object-fit: cover;
+    }
+}

@@ -1,0 +1,81 @@
+<app-barbershop-config-header
+  [description]="I18N_PREFFIX + 'description'"
+  [title]="I18N_PREFFIX + 'title-section'"
+  [hasAction]="true"
+  (onActionClick)="openCreateClientDialog()"
+/>
+
+<lib-input
+  matPrefix="search"
+  [label]="I18N_PREFFIX + 'search' | transloco"
+  [placeholder]="I18N_PREFFIX + 'search' | transloco"
+  [formControlRef]="searchForm"
+>
+</lib-input>
+@if (!isLoaded()) {
+<div class="d-flex justify-content-center my-4">
+  <lib-spinner></lib-spinner>
+</div>
+} @else {
+<div class="mat-elevation-z8 overflow-scroll table-wrapper p-2">
+  @if (!clients()?.length) {
+  <div class="d-flex flex-column align-items-center p-4">
+    <p class="mt-4"><span [transloco]="I18N_PREFFIX + 'no-clients'"></span></p>
+    <img src="/assets/icons/pictogram-no-results-found.svg" alt="" />
+  </div>
+  } @else {
+  <table mat-table [dataSource]="clients()">
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+    <!-- Photo Column -->
+    <ng-container matColumnDef="photo">
+      <th mat-header-cell *matHeaderCellDef>
+        <span [transloco]="I18N_PREFFIX + 'photo-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <img
+          class="user-icon rounded-circle"
+          [src]="element.photo?.url | getImgUrl : '/assets/icons/avatar.svg'"
+          alt="User photo"
+        />
+      </td>
+    </ng-container>
+    <!-- FirstName Column -->
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef>
+        <span [transloco]="I18N_PREFFIX + 'username-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.username }}</td>
+    </ng-container>
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>
+        <span [transloco]="I18N_PREFFIX + 'email-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+    <!-- LastName Column -->
+    <ng-container matColumnDef="telephone">
+      <th mat-header-cell *matHeaderCellDef>
+        <span [transloco]="I18N_PREFFIX + 'telephone-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.telephone.internationalNumber }}
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[10, 20, 50]"
+    [hidePageSize]="isMobile()"
+    [pageSize]="pagination.pageSize()"
+    [pageIndex]="pagination.page() - 1"
+    [length]="pagination.total()"
+    (page)="handlePageEvent($event)"
+    aria-label="Select page of clients"
+  >
+  </mat-paginator>
+  }
+</div>
+}

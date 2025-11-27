@@ -1,0 +1,51 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "bundler",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": ["ES2022", "dom", "esnext.asynciterable"],
+    "paths": {
+      "@client/shared/*": ["src/app/client/app/domains/shared/*"],
+      "@client/booking/*": ["src/app/client/app/domains/booking/*"],
+      "@client/barbershop-search/*": [
+        "src/app/client/app/domains/barbershop-search/*"
+      ],
+      "@client/barbershop-overview/*": [
+        "src/app/client/app/domains/barbershop-overview/*"
+      ],
+      "@client/my-account/*": ["src/app/client/app/domains/my-account/*"],
+      "@admin/domain-example/*": ["src/app/admin/app/domains/domain-example/*"],
+      "@admin/subscription/*": ["src/app/admin/app/domains/subscription/*"],
+      "@admin/landing-page/*": ["src/app/admin/app/domains/landing-page/*"],
+      "@admin/barbershop-schedule/*": [
+        "src/app/admin/app/domains/barbershop-schedule/*"
+      ],
+      "@admin/barbershop-config/*": [
+        "src/app/admin/app/domains/barbershop-config/*"
+      ],
+      "@admin/shared/*": ["src/app/admin/app/domains/shared/*"]
+    },
+    "strictPropertyInitialization": false
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

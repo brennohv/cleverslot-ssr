@@ -1,0 +1,75 @@
+<div
+  class="footer-navigator-content transition-all d-block d-md-none"
+  [class.hidden-footer]="isHideShowSetup$ | async"
+>
+  @switch (userType$ | async) { @case (UserType.CLIENT) {
+  <nav mat-tab-nav-bar backgroundColor="primary" [tabPanel]="tabPanel">
+    <div routerLink="/" mat-tab-link>
+      <mat-icon>search</mat-icon>
+      <a><span [transloco]="'footer.nav-client-search'"></span></a>
+    </div>
+    <div routerLink="/appointments" mat-tab-link>
+      <mat-icon>event_available</mat-icon>
+      <a> <span [transloco]="'footer.nav-client-bookings'"></span></a>
+    </div>
+    <div routerLink="/my-account" mat-tab-link>
+      <mat-icon>person</mat-icon>
+      <a><span [transloco]="'footer.nav-client-profile'"></span></a>
+    </div>
+  </nav>
+  } @case (UserType.PROFESSIONAL) {
+  <nav mat-tab-nav-bar backgroundColor="primary" [tabPanel]="tabPanel">
+    <div
+      [routerLink]="[
+        '/',
+        barber().barbershopSlug,
+        'barber',
+        'barber-comissions'
+      ]"
+      mat-tab-link
+    >
+      <mat-icon>paid</mat-icon>
+      <a><span [transloco]="'footer.nav-professional-commissions'"></span></a>
+    </div>
+    <div [routerLink]="['/', barber().barbershopSlug, 'barber']" mat-tab-link>
+      <mat-icon>event</mat-icon>
+      <a><span [transloco]="'footer.nav-professional-schedule'"></span></a>
+    </div>
+    <div
+      [routerLink]="['/', barber().barbershopSlug, 'barber', 'barber-config']"
+      mat-tab-link
+    >
+      <mat-icon>manage_accounts</mat-icon>
+      <a><span [transloco]="'footer.nav-professional-barber-config'"></span></a>
+    </div>
+  </nav>
+  } @case (UserType.ADMIN) {
+  <nav mat-tab-nav-bar backgroundColor="primary" [tabPanel]="tabPanel">
+    <div [routerLink]="['/', admin()?.barbershopSlug, 'admin']" mat-tab-link>
+      <mat-icon>event</mat-icon>
+      <a><span [transloco]="'footer.nav-admin-schedule'"></span></a>
+    </div>
+    <div
+      [routerLink]="[
+        '/',
+        admin()?.barbershopSlug,
+        'admin',
+        'barbershop-config'
+      ]"
+      mat-tab-link
+    >
+      <mat-icon>store</mat-icon>
+      <a><span [transloco]="'footer.nav-admin-barbershop-config'"></span></a>
+    </div>
+    <div
+      [routerLink]="['/', admin()?.barbershopSlug, 'admin', 'subscription']"
+      mat-tab-link
+    >
+      <mat-icon>paid</mat-icon>
+      <a><span [transloco]="'footer.nav-admin-barbershop-subscription'"></span></a>
+    </div>
+  </nav>
+  } }
+
+  <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+</div>

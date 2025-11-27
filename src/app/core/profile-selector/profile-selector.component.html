@@ -1,0 +1,55 @@
+<div class="font-medium">
+  <nav
+    class="d-flex align-items-center collumn-gap-1 cursor-pointer"
+    (click)="changeViewEvent.emit(IProfileContentView.DEFAULT)"
+  >
+    <mat-icon>chevron_left</mat-icon>
+    <strong><span [transloco]="'profile-selector.title'"></span></strong>
+  </nav>
+</div>
+<div class="wrapper-items mt-2">
+  <div role="link" class="item" routerLink="/">
+    <div>
+      <mat-icon>person</mat-icon>
+      <span class="font-medium"><span [transloco]="'profile-selector.client-label'"></span></span>
+    </div>
+    @if (currentProfile() === UserType.CLIENT) {
+    <mat-icon class="text-success">check</mat-icon>
+    } @else {
+    <mat-icon>chevron_right</mat-icon>
+    }
+  </div>
+  @if (barber()) {
+  <div
+    role="link"
+    class="item"
+    [routerLink]="['/', barber().barbershopSlug, 'barber']"
+  >
+    <div>
+      <mat-icon>person</mat-icon>
+      <span class="font-medium"><span [transloco]="'profile-selector.barber-label'"></span></span>
+    </div>
+    @if (currentProfile() === UserType.PROFESSIONAL) {
+    <mat-icon class="text-success">check</mat-icon>
+    } @else {
+    <mat-icon>chevron_right</mat-icon>
+    }
+  </div>
+  } @if (admin()) {
+  <div
+    role="link"
+    class="item"
+    [routerLink]="['/', admin().barbershopSlug, 'admin']"
+  >
+    <div>
+      <mat-icon>person</mat-icon>
+      <span class="font-medium"><span [transloco]="'profile-selector.admin-label'"></span></span>
+    </div>
+    @if (currentProfile() === UserType.ADMIN) {
+    <mat-icon class="text-success">check</mat-icon>
+    } @else {
+    <mat-icon>chevron_right</mat-icon>
+    }
+  </div>
+  }
+</div>

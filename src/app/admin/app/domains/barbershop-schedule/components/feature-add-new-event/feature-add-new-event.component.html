@@ -1,0 +1,23 @@
+<div   
+  [matTooltip]="'shared.barbershop-disabled-tolltip' | transloco"
+  [matTooltipDisabled]="isBarbershopActive()">
+  <button
+    mat-mini-fab
+    color="accent"
+    [matMenuTriggerFor]="menu"
+    aria-label="Add new event"
+    [disabled]="!isBarbershopActive()"
+  >
+  <mat-icon>add</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [disabled]="!canCreateAppointment()" (click)="openNewAppointmentDialog()">
+      <mat-icon>event_upcoming</mat-icon>
+      <span><span [transloco]="I18N_PREFFIX + 'book'"></span></span>
+    </button>
+    <button mat-menu-item (click)="openNewBlockerDialog()">
+      <mat-icon>event_busy</mat-icon>
+      <span><span [transloco]="I18N_PREFFIX + 'block'"></span></span>
+    </button>
+  </mat-menu>
+</div>

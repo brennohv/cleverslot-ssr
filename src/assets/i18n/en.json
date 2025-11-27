@@ -1,0 +1,89 @@
+{
+  "header": {
+    "nav-client-search": "Search",
+    "nav-client-bookings": "My bookings",
+    "nav-client-profile": "Profile",
+    "nav-professional-commissions": "Commissions",
+    "nav-professional-schedule": "Schedule",
+    "nav-professional-barber-config": "Professional",
+    "nav-admin-financial": "Financial",
+    "nav-admin-schedule": "Schedule",
+    "nav-admin-barbershop-config": "Administration",
+    "nav-admin-barbershop-subscription": "Subscription"
+  },
+  "footer": {
+    "nav-client-search": "Search",
+    "nav-client-bookings": "My bookings",
+    "nav-client-profile": "Profile",
+    "nav-professional-commissions": "Commissions",
+    "nav-professional-schedule": "Schedule",
+    "nav-professional-barber-config": "Professional",
+    "nav-admin-financial": "Financial",
+    "nav-admin-schedule": "Schedule",
+    "nav-admin-barbershop-config": "Administration",
+    "nav-admin-barbershop-subscription": "Subscription"
+  },
+  "profile-selector": {
+    "title": "Change Profile",
+    "client-label": "Client",
+    "barber-label": "Professional",
+    "admin-label": "Admin"
+  },
+  "profile-default-selector": {
+    "language": "Change Language",
+    "profile": "Change Profile",
+    "logout": "Logout",
+    "partner": "Become a partner",
+    "login": "Login"
+  },
+  "profile-menu": {
+    "CLIENT": "CLIENT",
+    "BARBER": "PROFESSIONAL",
+    "ADMIN": "ADMIN"
+  },
+  "language-selector": {
+    "title": "Change Language",
+    "portuguese-label": "Portuguese",
+    "english-label": "English"
+  },
+  "shared": {
+    "login-title": "Log in to continue",
+    "login-description": "Have your agenda in your hands.",
+    "login-button": "Login",
+    "no": "No",
+    "yes": "Yes",
+    "close": "Close",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "create": "Create",
+    "add": "Add",
+    "new-appointment": "New appointment",
+    "canceled-appointment": "Appointment Canceled",
+    "general-success-update": "Information updated successfully!",
+    "general-success-create": "Information created successfully!",
+    "general-success-delete": "Information deleted successfully!",
+    "general-error": "Something went wrong, please try later",
+    "unauthorized": "Unauthorized",
+    "cancel-booking-msg": "Appointment canceled successfully",
+    "edit-booking-msg": "Appointment edited successfully",
+    "success-booking-msg": "Appointment booked successfully",
+    "upload-hint": "Max size {{size}}MB",
+    "Sunday": "Sunday",
+    "Monday": "Monday",
+    "Tuesday": "Tuesday",
+    "Wednesday": "Wednesday",
+    "Thursday": "Thursday",
+    "Friday": "Friday",
+    "Saturday": "Saturday",
+    "barbershop-disabled-tolltip": "Your establishment is currently closed due to non-payment",
+    "custom-toast": {
+      "date-label": "Date:",
+      "time-label": "Time:",
+      "status-label": "Status:",
+      "service-label": "Service:",
+      "booked": "Booked",
+      "canceled": "Canceled"
+    }
+  }
+}

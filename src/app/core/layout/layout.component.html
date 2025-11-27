@@ -1,0 +1,15 @@
+<app-header />
+@if (isBarbershopInactive() && !isSubscriptionPage()) {
+    <div class="alert alert-danger text-center d-flex align-items-center justify-content-center" role="alert">
+        <div class="d-flex">
+            <mat-icon class="me-2">warning</mat-icon>
+        </div>
+        <p class="mb-0"><span [transloco]="'shared.barbershop-disabled-tolltip'"></span></p>
+    </div>
+}
+<div class="main-content" [class.isLandingPage]="isLandingPage()">
+    <router-outlet />
+</div>
+@if(!isLandingPage()) {
+    <app-footer-navigator></app-footer-navigator>
+}

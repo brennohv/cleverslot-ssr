@@ -1,0 +1,83 @@
+<mat-card>
+  <mat-card-content>
+    <!-- Location -->
+    <div>
+      <div class="d-flex flex-column">
+        <h4 class="mb-2 "><span [transloco]="I18N_PREFFIX + 'title-address'"></span></h4>
+        <span> {{ barbershop().address | barbershopAddress }} </span>
+      </div>
+      <mat-divider class="mb-4 mt-4"></mat-divider>
+    </div>
+
+    <!-- Business Time -->
+    <div class="mb-4 mt-4">
+      <h4 class="mb-2 "><span [transloco]="I18N_PREFFIX + 'title-business-time'"></span></h4>
+      <div class="d-flex flex-column mt-2">
+        @for (businessSchedule of businessHours(); track $index) {
+        <div
+          [class.today]="today === businessSchedule.day"
+          class="d-flex justify-content-between align-items-center day-row"
+        >
+          <div class="day d-flex column-gap-2 align-items-center">
+            <span [transloco]="I18N_PREFFIX +  businessSchedule.day"></span>
+            @if (today === businessSchedule.day) {
+            <span class="badge rounded-pill text-bg-success"><span [transloco]="I18N_PREFFIX + 'today'"></span></span>
+            }
+          </div>
+          <div class="d-flex flex-column align-items-end">
+            @if(!businessSchedule.firstPeriodStart && !businessSchedule.firstPeriodEnd){
+              <span class="badge rounded-pill text-bg-danger"><span [transloco]="I18N_PREFFIX + 'close'"></span></span>
+            } @else {
+              <span class="time">
+                {{ businessSchedule.firstPeriodStart | timeFormat }} -
+                {{ businessSchedule.firstPeriodEnd | timeFormat }}
+              </span>
+              @if (businessSchedule.secondPeriodStart &&
+              businessSchedule.secondPeriodEnd) {
+              <span class="time">
+                {{ businessSchedule.secondPeriodStart | timeFormat }} -
+                {{ businessSchedule.secondPeriodEnd | timeFormat }}
+              </span>
+              }
+            }
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        }
+      </div>
+    </div>
+
+    <!-- Payments -->
+    <div>
+      <div class="d-flex flex-column">
+        <h4 class="mb-2 "><span [transloco]="I18N_PREFFIX + 'title-payments'"></span></h4>
+        <mat-chip-set aria-label="Payment methods">
+          @for (paymentMethod of barbershop().paymentMethods; track $index) {
+          <mat-chip>{{ paymentMethod.value}}</mat-chip>
+          }
+        </mat-chip-set>
+        @if (!barbershop().paymentMethods.length) {
+          <span>-</span>
+        }
+      </div>
+      <mat-divider class="mb-4 mt-4"></mat-divider>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <div class="d-flex flex-column">
+        <h4 class="mb-2 "><span [transloco]="I18N_PREFFIX + 'title-contacts'"></span></h4>
+        <div class="d-flex align-items-center column-gap-2">
+          @if (whatsappNumber()) {
+          <div class="whatsapp-container p-2 text-bg-success rounded">
+              <a href="https://www.google.com/" [href]="'https://wa.me/' + whatsappNumber()" target="_blank">
+                <img src="/assets/icons/whatsapp-icon.svg" alt="">
+              </a>
+            </div>
+          }
+          <span> {{ barbershop().telephone?.internationalNumber || '-' }} </span>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

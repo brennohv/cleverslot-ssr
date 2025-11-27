@@ -1,0 +1,41 @@
+<lib-modal-body [alignActions]="isLoading() ? 'center' : 'end'">
+  <ng-container slot="modal-content">
+    <form class="d-flex flex-column ">
+       <div class="row mb-4">
+        <h4><span [transloco]="I18N_PREFFIX +  'title'"></span></h4>
+       </div>
+
+       <div class="row row-gap-2">
+        <div class=" col-12">
+            <lib-input
+                [required]="true"
+                [placeholder]="I18N_PREFFIX + 'name-label' | transloco"
+                [label]="I18N_PREFFIX + 'name-label' | transloco"
+                [formControlRef]="nameFormControl"
+            >
+            </lib-input>
+        </div>
+       </div>
+    </form>
+  </ng-container>
+
+  <ng-container slot="modal-actions">
+    @if (isLoading()) {
+      <lib-spinner />
+    } @else {
+      <button mat-button (click)="close()">
+        <span [transloco]="'shared.cancel'"></span>
+      </button>
+      <button
+        [disabled]="nameFormControl.invalid"
+        mat-raised-button
+        (click)="editBarbershopName()"
+        color="primary"
+        cdkFocusInitial
+      >
+        <span [transloco]="'shared.edit'"></span>
+      </button>
+    }
+    
+  </ng-container>
+</lib-modal-body>

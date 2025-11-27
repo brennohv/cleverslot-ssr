@@ -1,0 +1,139 @@
+<lib-modal-body 
+    [alignActions]="isCreationAppointmentLoading() ? 'center' : 'end'">
+  <ng-container slot="modal-content">
+    <form [formGroup]="freeSlotsForm" class="d-flex flex-column row-gap-3">
+      <div class="d-flex flex-column">
+          <strong class="mb-3"><span [transloco]="I18N_PREFFIX + 'best-date-title'"></span></strong>
+            <lib-date-picker-input
+              [minDate]="today"
+              [formControlRef]="freeSlotsForm.controls.date" 
+              [label]="I18N_PREFFIX + 'date-input' | transloco">
+            </lib-date-picker-input>
+      </div>
+  
+      <ng-container *ngIf="isProfessionalLoading(); else professionalContent">
+        <lib-spinner></lib-spinner>
+      </ng-container>
+  
+      <ng-template #professionalContent>
+        @if (professionalList(); as professionalList ) {
+          <div class="d-flex flex-column professional-content">
+              <strong class="mb-2"><span [transloco]="I18N_PREFFIX + 'professional-title'"></span></strong>
+              <mat-chip-listbox ariaOrientation="vertical" aria-label="Barber Selection">
+                @for (professional of professionalList; track $index) {
+                <mat-chip-option
+                  [selectable]="true"
+                  (selectionChange)="professionalChange($event, professional)"
+                  [value]="professionalList"
+                >
+                  <img
+                    class="barber-photo rounded-circle"
+                    matChipAvatar
+                    [src]="professional.userBarber.photo?.url | getImgUrl : '/assets/icons/avatar.svg' "
+                    alt="Professional photo"
+                  />
+                  {{ professional.firstName }}
+                </mat-chip-option>
+                }
+              </mat-chip-listbox>
+              
+          </div>
+          <mat-divider></mat-divider>
+      }
+      </ng-template>
+      
+      @if (!!freeSlotsForm.controls.barberId.value) {
+        <ng-container *ngIf="!isFreeSlotContentReady(); else freeSlotListContent">
+          <div class="content-slots">
+            <lib-spinner />
+          </div>
+        </ng-container>
+  
+        <ng-template #freeSlotListContent>
+          @if (isNextAvailabilityView()) {
+            @if(noSlotsWeekAvailability() ){
+              <div class="d-flex flex-column align-items-center text-center content-slots">
+                <p class="mt-4"><span [transloco]="I18N_PREFFIX + 'none-slot-message'"></span></p>
+                <img src="/assets/icons/pictogram-no-results-found.svg" alt="">
+              </div>
+            } @else {
+              <div class="d-flex flex-column align-items-center text-center content-slots">
+                <p class="mt-4"><span [transloco]="I18N_PREFFIX + 'next-availability-message'"></span></p>
+                <button (click)="nextAvailabilitySetup()" mat-raised-button color="primary" cdkFocusInitial>
+                  <span [transloco]="I18N_PREFFIX + 'next-availability-button'"></span>
+                </button>
+              </div>
+            }
+            
+          } @else {
+            <div class="d-flex flex-column content-slots">
+              <strong class="mb-2"><span [transloco]="I18N_PREFFIX + 'next-days-title'"></span></strong>
+              <mat-chip-listbox class="nextSlotContent mb-2" ariaOrientation="horizontal" aria-label="NextDay selection">
+                @for (nextSlotDay of weekSlotList(); track $index; let first = $first) {
+                <mat-chip-option
+                  [selectable]="true"
+                  [value]="nextSlotDay.date"
+                  (selectionChange)="getSlotsBasedOnNextDay($event, nextSlotDay.date)"
+                  [selected]="first"
+                >
+                  <div 
+                    [class.text-bg-danger]="nextSlotDay.total === 0"
+                    [class.text-bg-warning]="nextSlotDay.total > 0 && nextSlotDay.total <= 15"
+                    [class.text-bg-success]="nextSlotDay.total > 15"
+                    class="badge me-1 d-flex align-items-center">
+                    <span>{{ nextSlotDay.total }}</span>
+                  </div>
+  
+                  {{nextSlotDay.date | nextDayDateFormat | async}}
+  
+                </mat-chip-option>
+                }
+              </mat-chip-listbox>
+              
+              <strong class="mb-2"><span [transloco]="I18N_PREFFIX + 'time-title'"></span></strong>
+              <mat-chip-listbox #chipListBox ariaOrientation="vertical" aria-label="Slot selection">
+                @for (slot of freeSlotsList(); track $index; let first = $first) {
+                <mat-chip-option
+                  [selectable]="true"
+                  [value]="slot"
+                  (selectionChange)="slotChange($event, slot)"
+                >
+                <mat-icon
+                  matChipAvatar
+                  alt="Professional photo"
+                >
+                schedule
+                </mat-icon>
+                  {{ slot.startTime }}
+                </mat-chip-option>
+                } @empty {
+                  <div class="d-flex flex-column align-items-center text-center content-slots m-auto">
+                    <p class="mt-4"><span [transloco]="I18N_PREFFIX + 'no-slots-msg'"></span></p>
+                    <img src="/assets/icons/pictogram-no-results-found.svg" alt="">
+                  </div>
+                }
+              </mat-chip-listbox>
+            </div>
+          }
+        </ng-template>
+          
+      } @else {
+          <div class="d-flex align-items-center column-gap-2 content-slots">
+              <mat-icon class="flex-shrink-0">info</mat-icon>
+              <span><span [transloco]="I18N_PREFFIX + 'select-professional-msg'"></span></span>
+          </div>
+      }
+      
+    </form>
+  </ng-container>
+  <ng-container slot="modal-actions">
+    @if (isCreationAppointmentLoading()) {
+      <lib-spinner></lib-spinner>
+    } @else {
+      <button mat-button (click)="close()"><span [transloco]="I18N_PREFFIX + 'cancel-button'"></span></button>
+      <button [disabled]="freeSlotsForm.invalid || !selectedSlot().startTime" mat-raised-button (click)="createAppointment()" color="primary" cdkFocusInitial>
+        <span [transloco]="I18N_PREFFIX + 'book-button'"></span>
+      </button>
+    }
+  </ng-container>
+</lib-modal-body>

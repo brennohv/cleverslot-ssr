@@ -1,0 +1,139 @@
+<div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 col-xl-6 d-flex flex-column">
+        @if (userId()) {
+          <div >
+            <h2 class="main-header-page"><span [transloco]="I18N_PREFFIX + 'title'"></span></h2>
+            <div class="filter-content row mb-4">
+              <lib-date-picker-input
+                class="col-6"
+                [formControlRef]="filterForm.controls.startDate" 
+                [label]="I18N_PREFFIX + 'initial-date' | transloco">
+              </lib-date-picker-input>
+  
+              <lib-date-picker-input
+                class="col-6"
+                [minDate]="minEndDate()!"
+                [formControlRef]="filterForm.controls.endDate" 
+                [label]="I18N_PREFFIX + 'final-date' | transloco">
+              </lib-date-picker-input>
+            </div>
+      
+            <ng-container *ngIf="isLoading(); else appointmentListContent">
+              <lib-spinner />
+            </ng-container>
+      
+            <ng-template #appointmentListContent>
+              <div class="appointments-container">
+                @for (appointment of appoitmentList(); track $index) {
+                <mat-card>
+                  <mat-card-content>
+                    <div class="d-flex p-3 column-gap-3 align-items-center">
+                      <div role="presentation" (click)="navigateSetup(appointment.barbershop.slug)" class="cursor-pointer d-flex flex-column align-items-center company-content">
+                        <a class="mb-2">
+                          <img
+                            class="barbershop-logo rounded-circle"
+                            [src]="appointment.barbershop.logo?.url | getImgUrl"
+                            alt=""
+                          />
+                        </a>
+                        <strong class="text-center line-clamp-1">{{ appointment.barbershop.name }}</strong>
+                      </div>
+                      <div
+                        class="barbershop-info flex-grow-1 d-flex flex-column row-gap-1"
+                      >
+                        <span class="font-medium">
+                          {{ appointment.service.name }}
+                        </span>
+                        <span
+                          [class.text-decoration-line-through]="
+                            appointment.appointmentStatus === IStatus.CANCELED
+                          "
+                          class="fw-bold"
+                        >
+                          {{ appointment.startTime | timeFormat }} 
+                          <span [transloco]="I18N_PREFFIX + 'between-times'"></span>
+                          {{ appointment.endTime | timeFormat }}
+      
+                          <strong class="ms-2 text-success">
+                            {{ appointment.service.recurrency }}
+                            {{ appointment.service.value }}
+                          </strong>
+                        </span>
+                        
+                        @if (appointment.appointmentStatus === IStatus.CANCELED) {
+                          <div class="d-flex me-2">
+                            <mat-icon class="text-danger" >event_busy</mat-icon>
+                            <span class="text-danger fw-bold"><span [transloco]="I18N_PREFFIX + 'canceled-event'"></span></span>
+                          </div>
+                          
+                        } @else {
+                          <div class="d-flex me-2">
+                            <mat-icon class="text-success">event_available</mat-icon>
+                            <span class="text-success fw-bold"><span [transloco]="I18N_PREFFIX + 'booked-event'"></span></span>
+                          </div>
+                          
+                        }
+                      </div>
+                      <div class="d-flex flex-column align-items-center row-gap-4">
+                        <div
+                          class="d-flex flex-column align-items-center rounded-4 border p-2"
+                        >
+                          <span
+                            [class.text-decoration-line-through]="
+                              appointment.appointmentStatus === IStatus.CANCELED
+                            "
+                            class="fs-3 d-flex"
+                            >{{ appointment.date | dayFormat | async }}
+                          </span>
+                          <span
+                            [class.text-decoration-line-through]="
+                              appointment.appointmentStatus === IStatus.CANCELED
+                            "
+                            class="text-uppercase"
+                            >{{ appointment.date | monthFormat | async }}
+                          </span>
+                        </div>
+                        <button
+                          [disabled]="appointment.appointmentStatus === IStatus.CANCELED || (appointment | isPastDate)"
+                          mat-mini-fab
+                          color="warn"
+                          (click)="openCancelAppointmentDialog(appointment.documentId)"
+                        >
+                          <mat-icon>event_busy</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+                } @empty {
+                  <div class="d-flex flex-column align-items-center p-4">
+                    <p class="mt-4"><span [transloco]="I18N_PREFFIX + 'no-appointments'"></span></p>
+                    <img src="/assets/icons/pictogram-no-results-found.svg" alt="" />
+                  </div>
+                }
+              </div>
+            </ng-template>
+           
+          </div>
+        } @else {
+          <div class="d-flex flex-column row-gap-2 align-items-start">
+            <h2><span [transloco]="'shared.login-title'"></span></h2>
+            <span><span [transloco]="'shared.login-description'"></span></span>
+            <a mat-raised-button color="primary" routerLink="/auth" [queryParams]="{redirectTo: 'appointments'}" ><span [transloco]="'shared.login-button'"></span></a>
+          </div>
+        }
+        
+        @if (isGetMoreLoading()) {
+          <div class="mt-2 align-self-center">
+            <lib-spinner />
+          </div>
+        } @else if (hasMoreAppointment()) {
+          <div class="mt-4 align-self-center">
+            <button mat-raised-button color="primary" (click)="getMoreSetup()"><span [transloco]="I18N_PREFFIX + 'more-appointments'"></span></button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+  

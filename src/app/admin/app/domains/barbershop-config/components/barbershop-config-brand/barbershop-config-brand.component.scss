@@ -1,0 +1,54 @@
+.logo-icon {
+    max-width: 90px;
+    width: 90px;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.logo-overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 90px;
+    height: 45px;
+    transition: 0.5s ease;
+    opacity: 0;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 0px 0px 150px 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 90px;
+    height: 45px;
+    transition: 0.5s ease;
+    opacity: 0;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  .add-more {
+    background: rgba(0, 0, 0, 0.5);
+    max-width: 90px;
+    width: 90px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    opacity: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

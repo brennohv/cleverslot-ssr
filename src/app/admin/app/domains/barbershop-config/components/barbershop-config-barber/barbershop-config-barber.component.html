@@ -1,0 +1,89 @@
+<app-barbershop-config-header
+  [description]="I18N_PREFFIX + 'description'"
+  [title]="I18N_PREFFIX + 'title-section'"
+  [hasAction]="canCreateMoreEmployees() && isLoaded()"
+  (onActionClick)="openCreateBarberDialog()"
+/>
+
+@if(!isLoaded()) {
+<lib-spinner></lib-spinner>
+} @else {
+<div class="mat-elevation-z8 overflow-scroll table-wrapper p-2">
+  @if (barbers(); as barbers) { @if (!barbers.length) {
+  <div class="d-flex flex-column align-items-center p-4">
+    <p class="mt-4"><span [transloco]="I18N_PREFFIX + 'no-barbers'"></span></p>
+    <img src="/assets/icons/pictogram-no-results-found.svg" alt="" />
+  </div>
+  } @else {
+  <table mat-table [dataSource]="barbers">
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+    <!-- Delete Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" width="96">
+        <div class="d-flex align-items-center column-gap-1">
+          <button
+            color="warn"
+            mat-mini-fab
+            aria-label="Delete employee"
+            (click)="opeDeleteDialog(element.documentId)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+    <!-- FirstName Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef>
+        <span [transloco]="I18N_PREFFIX + 'first-name-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+    </ng-container>
+    <!-- LastName Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>
+        <span [transloco]="I18N_PREFFIX + 'last-name-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+    </ng-container>
+    <!-- Photo Column -->
+    <ng-container matColumnDef="photo">
+      <th mat-header-cell *matHeaderCellDef>
+        <span [transloco]="I18N_PREFFIX + 'photo-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <img
+          class="user-icon rounded-circle"
+          [src]="
+            element.userBarber.photo?.url
+              | getImgUrl : '/assets/icons/avatar.svg'
+          "
+          alt="User photo"
+        />
+      </td>
+    </ng-container>
+    <!-- Duration Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>
+        <span [transloco]="I18N_PREFFIX + 'email-th'"></span>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.userBarber.email }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[10, 20, 50]"
+    [hidePageSize]="isMobile()"
+    [pageSize]="pagination.pageSize()"
+    [pageIndex]="pagination.page() - 1"
+    [length]="pagination.total()"
+    (page)="handlePageEvent($event)"
+    aria-label="Select page of barbers"
+  >
+  </mat-paginator>
+  } }
+</div>
+}

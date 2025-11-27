@@ -1,0 +1,94 @@
+@import "./pallete.scss";
+
+:root {
+  --c-primary: #313b49;
+  --c-secondary: #f4a261;
+  --c-dark-primary-text: #222222;
+  --c-ligth-primary-text: #ffffff;
+}
+
+.c-primary {
+  color: var(--c-primary);
+}
+
+.c-secondary {
+  color: var(--c-secondary);
+}
+
+.c-ligth-primary-text {
+  color: var(--c-ligth-primary-text);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none !important;
+
+  &.underline {
+    &:hover {
+      text-decoration: underline !important;
+    }
+  }
+}
+
+.cdk-overlay-pane.mat-mdc-dialog-panel.s-large-dialog {
+  min-width: 450px;
+  max-width: 600px;
+  @media (max-width: 599px) {
+    min-width: 90vw;
+    max-width: 90vw;
+  }
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 350ms;
+}
+
+h4, h3, h2, h1 {
+  font-family: "Oswald", sans-serif!important;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.main-header-page {
+  position: relative;
+  margin-bottom: 40px;
+  &:after {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 5rem;
+    border-bottom: 0.5rem solid var(--c-secondary);
+    bottom: -12px;
+    
+  }
+}
+
+.custom-tooltip {
+  white-space: pre-line;
+  word-wrap: break-word;
+}
+
+@for $i from 0 through 6 {
+  .line-clamp-#{$i} {
+    display: -webkit-box;
+    line-clamp: #{$i};
+    -webkit-line-clamp: #{$i};
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    width: inherit;
+    overflow-wrap: break-word;
+    hyphens: manual;
+  }
+}
+
+.mat-mdc-text-field-wrapper {
+  background-color: white;
+}

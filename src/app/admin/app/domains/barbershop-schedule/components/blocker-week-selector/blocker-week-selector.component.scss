@@ -1,0 +1,39 @@
+.days-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+
+  .day {
+    padding: 10px;
+    background-blend-mode: soft-light, normal;
+
+    @media (max-width: 599px) {
+      padding: 5px;
+      max-width: 35px;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+
+    }
+
+    &.selected {
+      border: 1px solid #339F6E;
+      background: #E7F6EF;
+      color: #339F6E;
+    }
+
+    &.default {
+      background:  #F7F7F7;
+      border: 1px solid #999999;
+    }
+  }
+}
+
+.day:first-child {
+  border-radius: 4px 0px 0px 4px;
+}
+
+.day:last-child {
+  border-radius: 0px 4px 4px 0px;
+}

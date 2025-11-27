@@ -1,0 +1,390 @@
+{
+  "barbershop-schedule": {
+    "schedule-page": {
+      "title": "Agenda dos Profissionais",
+      "no-professionals-title": "Você ainda nao possui profissionais",
+      "no-professionals-description": "Crie um profissional para poder aceder sua agenda",
+      "no-professionals-button": "Adicionar um profissional"
+    },
+    "add-new-event": {
+      "book": "Agendar",
+      "block": "Bloquear minha agenda"
+    },
+    "picker-dialog": {
+      "title": "Selecione uma data",
+      "cancel": "Cancelar",
+      "select": "Selecionar"
+    },
+    "blocker-dialog": {
+      "delete-title": "Deletar bloqueio",
+      "date-title": "Selecione as datas",
+      "date-start": "Data inicial",
+      "date-end": "Data final",
+      "time-title": "Selecione os horários",
+      "time-start": "Horário inicial",
+      "time-end": "Horário final",
+      "day-of-week-title": "Selecione os dias da semana",
+      "delete-msg": "Tem certeza que deseja deletar este bloqueio?",
+      "delete-warning": "Essa ação nao pode ser revertida.",
+      "close": "Fechar",
+      "delete": "Deletar",
+      "edit": "Editar",
+      "block": "Bloquear",
+      "blocker-created-msg": "Bloqueio criado com sucesso",
+      "blocker-edited-msg": "Bloqueio editado com sucesso",
+      "blocker-deleted-msg": "Bloqueio deletado com sucesso"
+    },
+    "blocker-week": {
+      "abbreviation-monday": "Seg",
+      "abbreviation-tuesday": "Ter",
+      "abbreviation-wednesday": "Qua",
+      "abbreviation-thursday": "Qui",
+      "abbreviation-friday": "Sex",
+      "abbreviation-saturday": "Sab",
+      "abbreviation-sunday": "Dom"
+    },
+    "new-appointment": {
+      "date-title": "Selecione um dia",
+      "date-label": "Data",
+      "service-title": "Selecione um serviço",
+      "service-label": "Serviços",
+      "client-title": "Adicione um cliente",
+      "non-registered-label": "Cliente não registrado",
+      "new-client-label": "Novo cliente",
+      "mat-button-registered": "Registrado",
+      "mat-button-guest": "Guest",
+      "mat-button-new": "Novo",
+      "client-view-help": "Registrado: Clientes já cadastrados \n\n Guest: Clientes que preferem não criar uma conta. \n\n Novo: Clientes para os quais você criará um novo usuário.",
+      "new-client-view": {
+        "email-label": "Email",
+        "username-label": "Username",
+        "phone-label": "Telefone"
+      },
+      "registered-label": "Cliente registrado",
+      "name-label": "Nome",
+      "telephone-label": "Telefone",
+      "username-label": "Username ou Email",
+      "username-placeholder": "Escreva para procurar",
+      "no-user-msg": "Usuário nao encontrado",
+      "time-title": "Selecione um horário",
+      "accommodation": "Encaixe",
+      "no-time-msg": "Nenhum horário disponível nesta data!",
+      "start-time-label": "Horário inicial",
+      "end-time-label": "Horário final",
+      "select-service-msg": "Selecione um serviço para buscar os horários disponíveis para agendamento",
+      "close": "Fechar",
+      "cancel": "Cancelar",
+      "edit": "Editar",
+      "book": "Agendar"
+    },
+    "appointment-detailed": {
+      "cancel-title": "Cancelar agendamento",
+      "cancel-msg": "Tem certeza que deseja cancelar este agendamento?",
+      "date-label": "Data:",
+      "time-label": "Horário:",
+      "status-label": "Status:",
+      "service-label": "Serviço:",
+      "price-label": "Valor:",
+      "booked": "Agendado",
+      "canceled": "Cancelado"
+    }
+  },
+  "barbershop-config": {
+    "main-page": {
+      "title": "Administração"
+    },
+    "config-nav": {
+      "brand-and-visuals": "Marca e Visual",
+      "address-and-contact": "Endereço & Contacto",
+      "employees": "Colaboradores",
+      "business-hours": "Horário de funcionamento",
+      "clients": "Clientes",
+      "payment-methods": "Métodos de pagamento",
+      "services": "Serviços",
+      "comissions": "Comissões",
+      "nav-select-label": "Seções"
+    },
+    "config-services": {
+      "title-section": "Serviços",
+      "description": "Aqui você poderá adicionar, editar, habilitar e desabilitar os serviços do seu estabelecimento.",
+      "search": "Nome do serviço",
+      "active-th": "Ativo",
+      "name-th": "Nome",
+      "professionalPercentage-th": "Comissão Profissional",
+      "photo-th": "Foto",
+      "duration-th": "Duração",
+      "value-th": "Valor bruto",
+      "profit-th": "Lucro",
+      "enable-msg": "Serviço ativado com sucesso",
+      "disable-msg": "Serviço desativado com sucesso",
+      "no-services": "Sem serviços!",
+      "add-new-service": {
+        "title-add": "Crie um novo serviço",
+        "title-edit": "Edite um serviço",
+        "name-label": "Nome",
+        "value-label": "Valor",
+        "duration-label": "Duração em minutos",
+        "professional-percentage-label": "Comissão professional",
+        "recurrency-label": "Moeda",
+        "label-input-upload": "Foto",
+        "label-employees": "Colaboradores"
+      }
+    },
+    "config-payments": {
+      "title-section": "Pagamentos",
+      "description": "Aqui você poderá adicionar, editar e excluir os pagamentos do seu estabelecimento.",
+      "payment": "Pagamento:",
+      "no-services": "Sem Pagamentos!",
+      "add-new-payment": {
+        "title-add": "Crie um novo pagamento",
+        "title-edit": "Edite um pagamento",
+        "name-label": "Nome do pagamento"
+      },
+      "confirm-delete-title": "Deletar um pagamento",
+      "confirm-delete-description": "Tem certeza que deseja deletar esse pagamento?"
+    },
+    "config-address-contact": {
+      "address": {
+        "title": "Morada",
+        "description": "Aqui você poderá adicionar, editar e excluir a morada do seu estabelecimento.",
+        "street": "Rua/Avenida",
+        "number": "Número",
+        "complement": "Complemento",
+        "postalCode": "Código postal",
+        "city": "Cidade",
+        "country": "País",
+        "title-edit": "Edite o sua morada",
+        "title-add": "Adicione uma nova morada"
+      },
+      "contact": {
+        "title": "Contacto",
+        "description": "Aqui você poderá adicionar, editar e excluir o contacto do seu estabelecimento.",
+        "contact": "Contacto",
+        "title-edit": "Edite o seu telefone",
+        "title-add": "Adicione uma novo telefone"
+      }
+    },
+    "config-business-hours": {
+      "title": "Horário do seu Estabelecimento",
+      "description": "Gerencie o horário comercial do seu estabelecimento. Esse horário comercial impactará diretamente a disponibilidade de vagas para futuras reservas de clientes.",
+      "day": "Dia",
+      "status": "Status",
+      "first-period": "Primeiro período",
+      "second-period": "Segundo período",
+      "from-label": "Das",
+      "to-label": "Ás"
+    },
+    "config-brand": {
+      "establishment-url": "URL do meu estabelecimento",
+      "title": "Marca e visual",
+      "description": "Gerencie a marca do seu estabelecimento. Aqui você poderá adicionar seu logotipo, nome e imagens.",
+      "name": "Nome",
+      "images": "Imagens de visão geral do estabelecimento",
+      "image-description": "Max de 5 imagens",
+      "confirm-delete-title": "Deletar uma imagem",
+      "confirm-delete-description": "Tem certeza que deseja deletar esse imagem?",
+      "upload-logo": {
+        "title": "Minha Logo",
+        "description": "Personalize sua logo!"
+      },
+      "upload-modal": {
+        "logo": {
+          "title": "Edite sua logo",
+          "label-input-upload": "Logo"
+        },
+        "image": {
+          "title": "Adicione uma imagem",
+          "label-input-upload": "Imagem"
+        }
+      },
+      "edit-name-modal": {
+        "title": "Edite o nome do seu estabelecimento",
+        "name-label": "Nome"
+      }
+    },
+    "barbers": {
+      "title-section": "Colaboradores",
+      "description": "Aqui você poderá adicionar, editar e excluir funcionários do seu estabelecimento.",
+      "first-name-th": "Primeiro nome",
+      "last-name-th": "Apelido",
+      "photo-th": "Foto",
+      "email-th": "Email",
+      "no-barbers": "Sem Colaboradores!",
+      "add-new-barber": {
+        "title": "Adicione um novo colaborador",
+        "toggle-user-label": "Adicionar meu usuário como profissional",
+        "first-name-label": "Primeiro nome",
+        "last-name-label": "Apelido",
+        "email-label": "Email",
+        "username-label": "Username",
+        "phone-label": "Telefone",
+        "password-label": "Palavra passe",
+        "input-upload-label": "Foto do usuário"
+      },
+      "confirm-delete-title": "Deletar um colaborador",
+      "confirm-delete-description": "Tem certeza que deseja deletar esse colaborador?"
+    },
+    "clients": {
+      "title-section": "Clientes",
+      "description": "Aqui você poderá listar todos os clientes do seu estabelecimento.",
+      "photo-th": "Foto",
+      "email-th": "Email",
+      "search": "Email/Username",
+      "username-th": "Username",
+      "telephone-th": "Telefone",
+      "no-clients": "Sem clientes!",
+      "add-new-client": {
+        "title": "Adicione um novo cliente",
+        "email-label": "Email",
+        "username-label": "Username",
+        "phone-label": "Telefone",
+        "password-label": "Palavra passe"
+      }
+    },
+    "barbershop-comissions": {
+      "title-section": "Comissões",
+      "description": "Aqui você poderá calcular de forma fácil e precisa o valor a ser recebido por um colaborador, considerando o período que você selecionar.",
+      "initial-date": "Data inicial",
+      "final-date": "Data final",
+      "no-comissions": "Sem comissões nas datas selecionadas!",
+      "professional": "Colaborador",
+      "select-professional-msg": "Selecione um colaborador antes de começar",
+      "table": {
+        "name-th": "Serviço",
+        "photo-th": "Foto",
+        "quantity-th": "Quantidade",
+        "total-value-th": "Comissão",
+        "detailed": {
+          "date": "Data",
+          "start-time": "Horário inicial",
+          "client": "Nome do cliente",
+          "value": "Comissão"
+        }
+      }
+    }
+  },
+  "landing-page": {
+    "success-modal": {
+      "title": "Registro concluído com sucesso",
+      "description": "Para começar a usar todos os recursos do CleverSlot e garantir seu mês grátis, adicione um método de pagamento. Após o período grátis, continue por apenas € 4,90 por mês, dependendo do plano que você escolher. É rápido, seguro e você pode cancelar a qualquer momento!",
+      "pick-plan": "Selecione um plano"
+    },
+    "header": {
+      "welcome-title": "Bem-vindo ao CleverSlot!",
+      "welcome-description": "A solução de agendamento online ideal para o seu negócio.",
+      "trial-offer": "Experimente grátis por 1 mês. Depois disso, continue usando por apenas € 4,90 por mês, dependendo do plano que escolher.",
+      "try-button": "Experimente Gratuitamente"
+    },
+    "video": {
+      "section-title": "Funcionalidades"
+    },
+    "features": {
+      "section-title": "Por que escolher o CleverSlot?",
+      "items": {
+        "simplified-scheduling": {
+          "bold": "Gestão de Agendamentos Simplificada:",
+          "text": " Organize os horários de forma rápida e prática, reduzindo conflitos."
+        },
+        "access-anywhere": {
+          "bold": "Acesso em Qualquer Lugar:",
+          "text": " Gerencie sua agenda de qualquer dispositivo."
+        },
+        "boost-business": {
+          "bold": "Impulsione Seu Negócio:",
+          "text": " Permita que seus clientes agendem serviços diretamente, sem precisar de ligações."
+        },
+        "automatic-notifications": {
+          "bold": "Notificações Automáticas:",
+          "text": " Receba lembretes e mantenha sua equipe informada sobre compromissos."
+        },
+        "financial-control": {
+          "bold": "Controle Financeiro Inteligente:",
+          "text": " Descubra quanto deve pagar a cada colaborador."
+        },
+        "for-all-businesses": {
+          "bold": "Para Todos os Negócios de Serviços:",
+          "text": " Ideal para salões, barbearias, spas e muito mais."
+        }
+      },
+      "image-alt": "Gestão simplificada"
+    },
+    "how-it-works": {
+      "section-title": "Como funciona?",
+      "steps": {
+        "step-1": {
+          "title": "1. Crie sua conta",
+          "description": "Em poucos minutos, você estará pronto para começar."
+        },
+        "step-2": {
+          "title": "2. Adicione uma forma de pagamento",
+          "description": "Primeiro mês grátis, depois a partir de € 4,90 por mês, dependendo do plano."
+        },
+        "step-3": {
+          "title": "3. Configure seu negócio",
+          "description": "Adicione colaboradores, horários e serviços."
+        }
+      }
+    },
+    "register-section": {
+      "title": "Registro",
+      "form": {
+        "email": "Email",
+        "username": "Nome de usuário",
+        "establishment-name": "Nome do estabelecimento",
+        "telephone": "Telefone",
+        "password": "Senha",
+        "confirm-password": "Confirmar senha",
+        "register-button": "Registrar"
+      },
+      "errors": {
+        "already-has-organization": "Você já possui uma organização ou faz parte de uma organização, para criar uma nova organização crie uma nova conta."
+      },
+      "placeholder-button": {
+        "logged-in": "Crie seu negócio",
+        "not-logged-in": "Criar conta"
+      }
+    },
+    "footer": {
+      "contact-title": "Fale Conosco",
+      "contact-email": "Email: cleverslot@gmail.com",
+      "copyright": "© 2025 CleverSlot. Todos os direitos reservados."
+    }
+  },
+  "subscription-result": {
+    "success": {
+      "title": "Assinatura Bem-Sucedida!",
+      "thank-you": "Obrigado por assinar o CleverSlot! O seu pagamento foi processado com sucesso.",
+      "full-access": "Desfrute de acesso completo a todos os recursos. Estamos entusiasmados em tê-lo a bordo!",
+      "go-to-admin": "Ir para a Administração"
+    },
+    "failed": {
+      "title": "Falha na Assinatura",
+      "message": "Pedimos desculpas, mas não conseguimos processar sua assinatura.",
+      "check-payment": "Por favor, verifique seus dados de pagamento ou tente novamente mais tarde.",
+      "contact-support": "Se o problema persistir, entre em contato com nossa equipe de suporte.",
+      "email": "cleverslot@gmail.com"
+    }
+  },
+  "subscription": {
+    "title": "Subscrição",
+    "plan": {
+      "title": "Plano de Assinatura",
+      "description": "Capacite seu negócio com nosso plano personalizado, projetado para apoiar o crescimento e o sucesso.",
+      "free-trial": "30 dias de teste grátis",
+      "enterprise": "Plano Enterprise",
+      "basic": "Plano Básico",
+      "per-month": "/ mês",
+      "access-premium": "Acesso a todos os recursos premium",
+      "manage-professionals": "Crie e gerencie até 5 profissionais",
+      "manage-professionals-basic": "1 Professional",
+      "start-free-trial": "Inicie seu teste gratuito",
+      "choose-plan": "Escolher plano"
+    },
+    "billing": {
+      "title": "Gerenciar Faturamento",
+      "description": "Acesse seu portal de faturamento para atualizar seus métodos de pagamento, revisar faturas e gerenciar sua assinatura com facilidade.",
+      "go-to-portal": "Ir para o Portal de Faturamento",
+      "secure-powered": "Seguramente alimentado por"
+    }
+  }
+}

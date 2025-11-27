@@ -1,0 +1,16 @@
+.transform-item {
+    transform: translateY(-10px);
+}
+.transform-button {
+    transform: translateY(-15px);
+}
+
+.wrapper-grid {
+    display: grid;
+    grid-template-columns: 130px 130px 300px 300px;
+    column-gap: 12px;
+}
+
+.wrapper-input {
+    max-width: 140px;
+}

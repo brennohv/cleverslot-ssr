@@ -1,0 +1,37 @@
+.user-icon {
+  max-width: 45px;
+  width: 45px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+tr.mat-mdc-footer-row td {
+  font-weight: bold;
+}
+
+.table-wrapper {
+  background-color: var(--mat-table-background-color);
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+tr.element-row:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.element-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.professional-photo {
+  width: 35px;
+  height: 35px;
+}
+
+.content-empty-professional {
+  max-height: 250px;
+  min-height: 216px;
+  overflow-y: auto;
+}

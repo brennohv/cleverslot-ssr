@@ -1,0 +1,32 @@
+{
+  "login": {
+    "email-or-password": "Email / Username",
+    "password": "Password",
+    "login-button": "Login",
+    "under-login-msg": "Don't you have an account?",
+    "sign-up": "Sign-up"
+  },
+  "register": {
+    "title": "Register",
+    "email": "Email",
+    "username": "Username",
+    "telephone": "Telephone",
+    "password": "Password",
+    "confirm-passoword": "Confirm password",
+    "register-button": "Register",
+    "under-register-msg": "Do you an account?",
+    "sign-in": "Sign-in"
+  },
+  "forgot-password": {
+    "title": "Forgot password",
+    "description": "An email will be send for you",
+    "forgot-button": "Send email",
+    "success-message": "Email sent successfully"
+  },
+  "reset-password": {
+    "title": "Reset password",
+    "confirm-passoword": "Confirm password",
+    "password": "Password",
+    "success-message": "Reset password successfully"
+  }
+}

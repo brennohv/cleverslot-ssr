@@ -1,0 +1,44 @@
+<mat-card class="mb-3">
+  <mat-card-content>
+    <div [libSpinner]="isLoading()" class="row">
+      <div
+        class="col-12 d-flex align-items-center justify-content-between column-gap-2 mb-2"
+      >
+        <div class="d-flex column-gap-2 align-items-center">
+          <img
+            class="user-icon rounded-circle"
+            [src]="
+              professional().userBarber.photo?.url
+                | getImgUrl : '/assets/icons/avatar.svg'
+            "
+            alt="user-icon"
+          />
+          <h4 class="oswald-emphasis">
+            {{ professional().firstName + " " + professional().lastName }}
+          </h4>
+        </div>
+
+        <app-feature-add-new-event
+          [professionalId]="professional().documentId"
+          (reloadCalendarEvents)="reloadEventList($event)"
+          [date]="currentDate"
+        />
+      </div>
+      <div class="col-12">
+        <full-calendar
+          #calendar
+          [events]="calendarEvents()"
+          [options]="calendarOptionsComputed()"
+        >
+          <ng-template #eventContent let-arg>
+            @if (calendarEvents().length && arg.event.extendedProps) {
+            <div class="ps-2">
+              <app-calendar-event [calendarEvent]="arg.event" />
+            </div>
+            }
+          </ng-template>
+        </full-calendar>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

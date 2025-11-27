@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-between align-items-center mb-3 column-gap-4">
+    <div class="d-flex flex-column column-gap-2 "> 
+        <h4><span [transloco]="title()"></span></h4>
+        <p><span [transloco]="description()"></span></p>
+    </div>
+    <ng-content select="[slot=action-content]">
+        @if (hasAction()) {
+            <div>
+                <button mat-fab aria-label="Add services" color="accent" (click)="onActionClick.emit()">
+                    <mat-icon>{{ icon() }}</mat-icon>
+                </button>
+            </div>
+        }
+    </ng-content>   
+</div>

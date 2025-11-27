@@ -1,0 +1,152 @@
+{
+  "barber-config": {
+    "main-page": {
+      "title": "Configuração do Profissional"
+    },
+    "config-nav": {
+      "nav-select-label": "Seção",
+      "profile": "Perfil",
+      "services": "Serviços"
+    },
+    "config-profile": {
+      "title-section": "Perfil",
+      "title": "Minha foto",
+      "description": "Personalize sua conta!",
+      "professional-information": {
+        "title": "Informação do profissional",
+        "first-name": "Nome",
+        "last-name": "Sobrenome"
+      },
+      "professional-edit-name": {
+        "FIRST_NAME": "Nome",
+        "LAST_NAME": "Sobrenome",
+        "edit-first-name": "Edite o nome",
+        "edit-last-name": "Edite o sobrenome"
+      }
+    },
+    "config-services": {
+      "title-section": "Serviços",
+      "description": "Aqui você poderá selecionar quais serviços deseja vincular com base na lista de serviços da barbearia.",
+      "search": "Nome do serviço",
+      "active-th": "Associado",
+      "name-th": "Nome",
+      "professionalPercentage-th": "Comissão",
+      "photo-th": "Foto",
+      "duration-th": "Duração",
+      "value-th": "Valor bruto"
+    },
+    "upload-image-modal": {
+      "title": "Edite sua foto de perfil",
+      "label-input-upload": "Carregue sua foto",
+      "upload-hint": "Tamanho max {{size}}MB",
+      "cancel-button": "Cancelar",
+      "upload-button": "Carregar",
+      "success-msg": "Foto atualizada com sucesso"
+    }
+  },
+  "schedule": {
+    "main-page": {
+      "title": "Minha Agenda"
+    },
+    "add-new-event": {
+      "book": "Agendar",
+      "block": "Bloquear minha agenda"
+    },
+    "picker-dialog": {
+      "title": "Selecione uma data",
+      "cancel": "Cancelar",
+      "select": "Selecionar"
+    },
+    "blocker-dialog": {
+      "delete-title": "Deletar bloqueio",
+      "date-title": "Selecione as datas",
+      "date-start": "Data inicial",
+      "date-end": "Data final",
+      "time-title": "Selecione os horários",
+      "time-start": "Horário inicial",
+      "time-end": "Horário final",
+      "day-of-week-title": "Selecione os dias da semana",
+      "delete-msg": "Tem certeza que deseja deletar este bloqueio?",
+      "delete-warning": "Essa ação nao pode ser revertida.",
+      "close": "Fechar",
+      "delete": "Deletar",
+      "edit": "Editar",
+      "block": "Bloquear",
+      "blocker-created-msg": "Bloqueio criado com sucesso",
+      "blocker-edited-msg": "Bloqueio editado com sucesso",
+      "blocker-deleted-msg": "Bloqueio deletado com sucesso"
+    },
+    "blocker-week": {
+      "abbreviation-monday": "Seg",
+      "abbreviation-tuesday": "Ter",
+      "abbreviation-wednesday": "Qua",
+      "abbreviation-thursday": "Qui",
+      "abbreviation-friday": "Sex",
+      "abbreviation-saturday": "Sab",
+      "abbreviation-sunday": "Dom"
+    },
+    "new-appointment": {
+      "date-title": "Selecione um dia",
+      "date-label": "Data",
+      "service-title": "Selecione um serviço",
+      "service-label": "Serviços",
+      "client-title": "Adicione um cliente",
+      "non-registered-label": "Cliente não registrado",
+      "new-client-label": "Novo cliente",
+      "mat-button-registered": "Registrado",
+      "mat-button-guest": "Guest",
+      "mat-button-new": "Novo",
+      "client-view-help": "Registrado: Clientes já cadastrados \n\n Guest: Clientes que preferem não criar uma conta. \n\n Novo: Clientes para os quais você criará um novo usuário.",
+      "new-client-view": {
+        "email-label": "Email",
+        "username-label": "Username",
+        "phone-label": "Telefone"
+      },
+      "registered-label": "Cliente registrado",
+      "name-label": "Nome",
+      "telephone-label": "Telefone",
+      "username-label": "Username ou Email",
+      "username-placeholder": "Escreva para procurar",
+      "no-user-msg": "Usuário nao encontrado",
+      "time-title": "Selecione um horário",
+      "accommodation": "Encaixe",
+      "no-time-msg": "Nenhum horário disponível nesta data!",
+      "start-time-label": "Horário inicial",
+      "end-time-label": "Horário final",
+      "select-service-msg": "Selecione um serviço para buscar os horários disponíveis para agendamento",
+      "close": "Fechar",
+      "cancel": "Cancelar",
+      "edit": "Editar",
+      "book": "Agendar"
+    },
+    "appointment-detailed": {
+      "cancel-title": "Cancelar agendamento",
+      "cancel-msg": "Tem certeza que deseja cancelar este agendamento?",
+      "date-label": "Data:",
+      "time-label": "Horário:",
+      "status-label": "Status:",
+      "service-label": "Serviço:",
+      "price-label": "Valor:",
+      "booked": "Agendado",
+      "canceled": "Cancelado"
+    }
+  },
+  "barber-comissions": {
+    "initial-date": "Data inicial",
+    "final-date": "Data final",
+    "title": "Minhas comissões",
+    "no-comissions": "Sem comissões nas datas selecionadas!",
+    "table": {
+      "name-th": "Serviço",
+      "photo-th": "Foto",
+      "quantity-th": "Quantidade",
+      "total-value-th": "Comissão",
+      "detailed": {
+        "date": "Data",
+        "start-time": "Horário inicial",
+        "client": "Nome do cliente",
+        "value": "Comissão"
+      }
+    }
+  }
+}
