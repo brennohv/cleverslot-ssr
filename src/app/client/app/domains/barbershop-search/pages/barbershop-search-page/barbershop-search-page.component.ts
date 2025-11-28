@@ -11,6 +11,7 @@ import {
 import { FormControl } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { ActivatedRoute } from '@angular/router';
 import {
   InputComponent,
   UserStore,
@@ -27,7 +28,11 @@ import { RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SearchBarbershopStore } from '@client/barbershop-search/data/stores';
 import { BarbershopAddressPipe } from '@client/shared/utils/pipes';
-import { TranslocoPipe, TranslocoDirective, TranslocoService } from '@jsverse/transloco';
+import {
+  TranslocoPipe,
+  TranslocoDirective,
+  TranslocoService,
+} from '@jsverse/transloco';
 
 // Enable the plugin
 dayjs.extend(localizedFormat);
@@ -59,6 +64,7 @@ export class BarbershopSearchPageComponent implements OnInit {
   #destroyRef = inject(DestroyRef);
   #translocoService = inject(TranslocoService);
   #injector = inject(Injector);
+  #route = inject(ActivatedRoute);
   barberShopList = this.#searchBarbershopStore.barbershops;
   isLoaded = this.#searchBarbershopStore.loaded;
   isGetMoreLoading = this.#searchBarbershopStore.getMoreLoading;
@@ -74,6 +80,17 @@ export class BarbershopSearchPageComponent implements OnInit {
   readonly I18N_PREFFIX = 'mfClient.search-barbershop.';
 
   ngOnInit(): void {
+    // Get resolved data from route
+    const resolvedData = this.#route.snapshot.data['barbershopData'];
+
+    if (resolvedData) {
+      // Initialize store with resolved data
+      this.#searchBarbershopStore.initializeWithResolvedData(
+        resolvedData.barbershops,
+        resolvedData.pageInfo
+      );
+    }
+
     afterNextRender(
       () => {
         this.setFilterNameSetup().subscribe();
@@ -87,9 +104,12 @@ export class BarbershopSearchPageComponent implements OnInit {
   }
 
   setFilterNameSetup(): Observable<string> {
-    return this.searchForm.valueChanges.pipe(startWith('')).pipe(
+    return this.searchForm.valueChanges.pipe(
       takeUntilDestroyed(this.#destroyRef),
-      tap((name) => this.#searchBarbershopStore.setNameFilter(name))
+      tap((name) => {
+        this.#searchBarbershopStore.setNameFilter(name);
+        this.#searchBarbershopStore.getBarbershopList(name);
+      })
     );
   }
 }

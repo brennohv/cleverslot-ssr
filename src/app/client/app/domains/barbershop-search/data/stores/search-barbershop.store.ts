@@ -29,8 +29,10 @@ import {
   setPagination,
   updateStateLib,
   withPaginationState,
+  IPagination,
 } from 'ba-ngrx-signal-based';
 import { isPlatformBrowser } from '@angular/common';
+import { IBarbershopSearch } from '@client/barbershop-search/data/types';
 
 const initialState: ISearchBarbershopStore = {
   barbershops: [],
@@ -143,6 +145,15 @@ export const SearchBarbershopStore = signalStore(
           setLoading()
         );
       },
+      initializeWithResolvedData: (
+        barbershops: IBarbershopSearch[],
+        pageInfo: IPagination
+      ) => {
+        updateStateLib(store, `[Initialize with resolved data]`, {
+          barbershops,
+        });
+        patchState(store, setPagination(pageInfo), setLoaded());
+      },
     };
   }),
   withMethods((store) => {
@@ -163,14 +174,5 @@ export const SearchBarbershopStore = signalStore(
     hasMoreDataFromService: computed(() => {
       return total() > barbershops()?.length;
     }),
-  })),
-  withHooks({
-    onInit(store) {
-      const platformId = inject(PLATFORM_ID);
-      if (isPlatformBrowser(platformId)) {
-        store.setInitialLoading();
-        store.getBarbershopList(store.filter.name);
-      }
-    },
-  })
+  }))
 );
