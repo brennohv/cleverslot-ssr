@@ -39,7 +39,7 @@
     "@ngrx/signals": "~20.0.0",
     "@softarc/native-federation-node": "~3.3.4",
     "apollo-angular": "12.1.0",
-    "ba-ngrx-signal-based": "~1.0.11",
+    "ba-ngrx-signal-based": "~1.0.12",
     "bootstrap": "~5.3.3",
     "dayjs": "1.11.19",
     "express": "~5.1.0",
