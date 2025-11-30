@@ -1,12 +1,10 @@
 <mat-toolbar class="header">
   <div class="d-flex align-items-center">
-    <img
+    <lib-svg-icon
       role="button"
       (click)="navigateBasedOnProfile()"
-      width="200px"
-      src="/assets/icons/logo-white.png"
-      alt=""
-    />
+      src="/assets/icons/logo-white.svg"
+    ></lib-svg-icon>
     <nav class="d-none d-md-flex column-gap-4 ms-4 nav-desktop">
       @switch (userType()) { @case (UserType.CLIENT) {
       <a class="underline d-flex align-items-center" routerLink="/">

@@ -11,18 +11,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthStore, UserStore } from 'ba-ngrx-signal-based';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
 import { Observable, map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { UserType } from '../types/user-type.model';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { ProfileMenuComponent } from '../profile-menu/profile-menu.component';
+import { SvgIconComponent } from 'ba-ngrx-signal-based';
 
 @Component({
   selector: 'app-header',
@@ -36,6 +30,7 @@ import { ProfileMenuComponent } from '../profile-menu/profile-menu.component';
     MatIconModule,
     ProfileMenuComponent,
     TranslocoDirective,
+    SvgIconComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

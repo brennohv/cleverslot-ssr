@@ -33,6 +33,7 @@ import {
   TranslocoDirective,
   TranslocoService,
 } from '@jsverse/transloco';
+import { BarbershopListResolverData } from '@client/barbershop-search/data/resolvers';
 
 // Enable the plugin
 dayjs.extend(localizedFormat);
@@ -81,7 +82,9 @@ export class BarbershopSearchPageComponent implements OnInit {
 
   ngOnInit(): void {
     // Get resolved data from route
-    const resolvedData = this.#route.snapshot.data['barbershopData'];
+    const resolvedData = this.#route.snapshot.data[
+      'barbershopData'
+    ] as BarbershopListResolverData | null;
 
     if (resolvedData) {
       // Initialize store with resolved data
