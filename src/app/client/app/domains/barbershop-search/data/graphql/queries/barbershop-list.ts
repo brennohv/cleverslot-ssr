@@ -5,7 +5,7 @@ export const BARBERSHOP_LIST = gql`
   query getBarbershop($name: String, $pagination: PaginationArg) {
     barbershops_connection(
       pagination: $pagination
-      filters: { name: { contains: $name }, isActive: { eq: true } }
+      filters: { name: { containsi: $name }, isActive: { eq: true } }
     ) {
       nodes {
         name
