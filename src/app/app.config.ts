@@ -4,6 +4,7 @@ import {
   isDevMode,
   PLATFORM_ID,
   provideAppInitializer,
+  provideZonelessChangeDetection,
 } from '@angular/core';
 import { provideRouter, withViewTransitions } from '@angular/router';
 
@@ -36,6 +37,7 @@ export const appConfig: ApplicationConfig = {
       provide: LIBRARY_ENV,
       useValue: environment as IEnvironment,
     },
+    provideZonelessChangeDetection(),
     provideRouter(routes, withViewTransitions({ skipInitialTransition: true })),
     graphqlProvider(),
     provideAnimations(),

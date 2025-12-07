@@ -49,7 +49,6 @@
     "ngx-toastr": "~19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "~2.3.0",
-    "zone.js": "~0.15.1",
     "ngx-skeleton-loader": "~11.3.0",
     "@netlify/angular-runtime": "3.0.1",
     "ngx-cookie-service-ssr": "^20.0.0"
