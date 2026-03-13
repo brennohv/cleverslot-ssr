@@ -1,0 +1,166 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="main-header-page">{{ I18N_PREFFIX + 'title' | transloco}}</h2>
+    </div>
+
+    <div class="col-12">
+      <div class="filter-content row mb-4">
+        <!-- Filter section -->
+        <lib-date-picker-input
+          class="col-6 col-lg-4"
+          [formControlRef]="filterForm.controls.startDate" 
+          [label]=" I18N_PREFFIX + 'initial-date' | transloco">
+        </lib-date-picker-input>
+
+        <lib-date-picker-input
+          class="col-6 col-lg-4"
+          [minDate]="minEndDate()!"
+          [formControlRef]="filterForm.controls.endDate" 
+          [label]=" I18N_PREFFIX + 'final-date' | transloco">
+        </lib-date-picker-input>
+        <!-- ***************************************** -->
+      </div>
+    </div>
+    <div class="col-12 col-lg-8">
+      @if (!isLoading() && !services().length) {
+        <div class="d-flex flex-column align-items-center p-4">
+          <p class="mt-4">{{ I18N_PREFFIX + 'no-comissions' | transloco}}</p>
+          <img src="/assets/icons/pictogram-no-results-found.svg" alt="" />
+        </div>
+      } @else {
+        <div class="mat-elevation-z8 overflow-scroll table-wrapper" [libSpinner]="isLoading()">
+          <table
+            mat-table
+            [dataSource]="services()"
+            multiTemplateDataRows
+            class="mat-elevation-z8"
+          >
+            <!-- Services section -->
+            <ng-container matColumnDef="photo">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let element" width="45">
+                <img class="user-icon rounded-circle" [src]="element.photoUrl | getImgUrl" alt="service photo">
+              </td>
+              <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th class="oswald-emphasis" mat-header-cell *matHeaderCellDef> {{ I18N_PREFFIX + "table.name-th" | transloco }} </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="d-flex column-gap-2 align-items-center">
+                  <span>{{element.name}}</span>
+                </div>
+                 </td>
+              <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="photoUrl">
+              <th class="oswald-emphasis" mat-header-cell *matHeaderCellDef> {{ I18N_PREFFIX + "table.photo-th" | transloco }} </th>
+              <td mat-cell *matCellDef="let element">
+                <img class="user-icon rounded-circle" [src]="element.photoUrl | getImgUrl" alt="service photo">
+              </td>
+              <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="quantity">
+              <th class="oswald-emphasis" mat-header-cell *matHeaderCellDef> {{ I18N_PREFFIX + "table.quantity-th" | transloco }} </th>
+              <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+              <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="totalValue">
+              <th class="oswald-emphasis" mat-header-cell *matHeaderCellDef> 
+                {{ I18N_PREFFIX + "table.total-value-th" | transloco }} 
+              </th>
+              <td mat-cell *matCellDef="let element"> {{element.totalValue | currency: '' : recurrency()}} </td>
+              <td mat-footer-cell *matFooterCellDef="let element" class="oswald-emphasis font-large"> 
+                Total: {{ salary() | currency: '' :  recurrency()}} 
+              </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="expand">
+              <th mat-header-cell *matHeaderCellDef aria-label="row actions">
+                &nbsp;
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <button
+                  mat-icon-button
+                  aria-label="expand row"
+                  (click)="setExpandedElement(element, $event)"
+                >
+                  @if (expandedElement === element) {
+                  <mat-icon>keyboard_arrow_up</mat-icon>
+                  } @else {
+                  <mat-icon>keyboard_arrow_down</mat-icon>
+                  }
+                </button>
+              </td>
+            </ng-container>
+            <!-- ***************************************** -->
+  
+            <!-- Appointment section -->
+            <ng-container matColumnDef="expandedDetail">
+              <td
+                mat-cell
+                *matCellDef="let element"
+                [attr.colspan]="columnsToDisplayWithExpand.length"
+                [class.expanded]="element === expandedElement"
+              >
+                <div
+                  class="element-detail"
+                  [class.expanded]="element === expandedElement"
+                  [@detailExpand]="
+                    element === expandedElement ? 'expanded' : 'collapsed'
+                  "
+                >
+                <table mat-table [dataSource]="element.appointments" class="nested-table">
+                  <ng-container matColumnDef="date">
+                    <th class="oswald-emphasis"  mat-header-cell *matHeaderCellDef> {{ I18N_PREFFIX + 'table.detailed.date' | transloco}} </th>
+                    <td mat-cell *matCellDef="let appointment"> {{ appointment.date | dayFormat | async }} </td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="startTime">
+                    <th class="oswald-emphasis" mat-header-cell *matHeaderCellDef> {{ I18N_PREFFIX + 'table.detailed.start-time' | transloco}} </th>
+                    <td mat-cell *matCellDef="let appointment"> {{ appointment.startTime | timeFormat }} </td>
+                  </ng-container>
+  
+                  <ng-container matColumnDef="clientName">
+                    <th class="oswald-emphasis" mat-header-cell *matHeaderCellDef> {{ I18N_PREFFIX + 'table.detailed.client' | transloco}} </th>
+                    <td mat-cell *matCellDef="let appointment"> {{ appointment.client?.username || appointment.nonRegisteredUser?.name }} </td>
+                  </ng-container>
+  
+                  <ng-container matColumnDef="value">
+                    <th class="oswald-emphasis" mat-header-cell *matHeaderCellDef> {{ I18N_PREFFIX + 'table.detailed.value' | transloco}} </th>
+                    <td mat-cell *matCellDef="let appointment"> {{ (element.totalValue / element.quantity) | currency: '' : recurrency() }} </td>
+                  </ng-container>
+          
+                  <tr mat-header-row *matHeaderRowDef="['date', 'startTime', 'clientName', 'value']"></tr>
+                  <tr mat-row *matRowDef="let row; columns: ['date', 'startTime', 'clientName', 'value']"></tr>
+                </table>
+                </div>
+              </td>
+            </ng-container>
+            <!-- ***************************************** -->
+  
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+            <tr
+              mat-row
+              *matRowDef="let element; columns: columnsToDisplayWithExpand"
+              class="element-row"
+              [class.expanded-row]="expandedElement === element"
+              (click)="setExpandedElement(element, $event)"
+            ></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: ['expandedDetail']"
+              class="detail-row"
+            ></tr>
+            <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+          </table>
+        </div>
+      }
+      
+    </div>
+  </div>
+</div>

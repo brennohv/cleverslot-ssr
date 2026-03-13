@@ -1,0 +1,41 @@
+<!-- Mobile -->
+<div class="d-block d-lg-none">
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>{{ I18N_PREFFIX + 'nav-select-label' | transloco }}</mat-label>
+    <mat-select [value]="barberConfigView()" (selectionChange)="updateViewSelect($event)">
+      <mat-select-trigger>
+        <div>
+          <mat-icon class="icon-option">{{ viewSelected()?.icon }}</mat-icon>
+          <span>{{ viewSelected()?.label | transloco }}</span>
+        </div>
+      </mat-select-trigger>
+      @for (link of links; track link) {
+      <mat-option [value]="link.viewReference">
+        <div class="d-flex align-items-center column-gap-2">
+          <mat-icon>{{ link.icon }}</mat-icon>
+          <span>{{ link.label | transloco }}</span>
+        </div>
+      </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<!-- Tablet and Desktop -->
+<div class="d-none d-lg-block">
+  <div class="d-flex align-items-center column-gap-2">
+    <h4>{{ I18N_PREFFIX + 'nav-select-label' | transloco }}</h4>
+    <mat-icon>south</mat-icon>
+  </div>
+  <mat-nav-list>
+    @for (link of links; track link) {
+    <mat-list-item class="ps-0" [activated]="link.viewReference === barberConfigView()">
+      <a role="presentation" (click)="updateView(link.viewReference)" matListItemTitle
+        class="d-flex align-items-center column-gap-2">
+        <mat-icon>{{ link.icon }}</mat-icon>
+        {{ link.label | transloco }}
+      </a>
+    </mat-list-item>
+    }
+  </mat-nav-list>
+</div>

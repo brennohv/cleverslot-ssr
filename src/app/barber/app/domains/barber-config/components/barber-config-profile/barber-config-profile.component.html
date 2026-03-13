@@ -1,0 +1,76 @@
+<div class="d-flex flex-column">
+  <mat-card class="mb-3">
+    <mat-card-content>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex flex-column">
+          <h4>{{ I18N_PREFFIX + "title" | transloco }}</h4>
+          <span>{{ I18N_PREFFIX + "description" | transloco }}</span>
+        </div>
+        <div
+          (click)="openUploadModal()"
+          class="position-relative cursor-pointer"
+          role="presentation"
+        >
+          <img
+            class="user-icon rounded-circle"
+            [src]="barber().photoUrl | getImgUrl : '/assets/icons/avatar.svg'"
+            alt="user-icon"
+          />
+          <div class="photoOverlay opacity-75">
+            <mat-icon>add_a_photo</mat-icon>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="mb-3">
+    <mat-card-header>
+      <mat-card-title>
+          <h4>
+            {{I18N_PREFFIX + 'professional-information.title' | transloco}}
+          </h4>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="pb-0">
+      <mat-list class="p-0">
+        <mat-list-item>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="overflow-hidden text-truncate"
+              >{{ I18N_PREFFIX + 'professional-information.first-name' | transloco }}: {{ barber().firstName }}</span
+            >
+            <button
+              (click)="
+                openEditUserNameModal(IEditProfessionalView.FIRST_NAME , I18N_PREFFIX + 'professional-edit-name.edit-first-name')
+              "
+              mat-icon-button
+              color="primary"
+              aria-label="Edit"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item
+          ><div class="d-flex justify-content-between align-items-center">
+            <span class="overflow-hidden text-truncate"
+              >{{ I18N_PREFFIX + 'professional-information.last-name' | transloco }}: {{ barber().lastName }}</span
+            >
+            <button
+              (click)="
+                openEditUserNameModal(IEditProfessionalView.LAST_NAME , I18N_PREFFIX + 'professional-edit-name.edit-last-name')
+              "
+              mat-icon-button
+              color="primary"
+              aria-label="Edit"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div></mat-list-item
+        >
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

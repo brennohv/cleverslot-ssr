@@ -38,7 +38,13 @@
       "@admin/barbershop-config/*": [
         "src/app/admin/app/domains/barbershop-config/*"
       ],
-      "@admin/shared/*": ["src/app/admin/app/domains/shared/*"]
+      "@admin/shared/*": ["src/app/admin/app/domains/shared/*"],
+      "@barber/barber-config/*": ["src/app/barber/app/domains/barber-config/*"],
+      "@barber/barber-comissions/*": [
+        "src/app/barber/app/domains/barber-comissions/*"
+      ],
+      "@barber/schedule/*": ["src/app/barber/app/domains/schedule/*"],
+      "@barber/shared/*": ["src/app/barber/app/domains/shared/*"]
     },
     "strictPropertyInitialization": false
   },

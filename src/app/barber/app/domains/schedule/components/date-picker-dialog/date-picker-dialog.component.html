@@ -1,0 +1,12 @@
+<mat-dialog-content>
+    <strong>{{ I18N_PREFFIX + 'title' | transloco }}</strong>
+    <mat-card class="demo-inline-calendar-card mt-3">
+        <mat-calendar [(selected)]="selected"></mat-calendar>
+      </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions [align]="'end'">
+    <button mat-button (click)="close()">{{ I18N_PREFFIX + 'cancel' | transloco }}</button>
+      <button mat-raised-button (click)="apply()" color="primary" cdkFocusInitial>
+        {{ I18N_PREFFIX + 'select' | transloco }}
+      </button>
+  </mat-dialog-actions>

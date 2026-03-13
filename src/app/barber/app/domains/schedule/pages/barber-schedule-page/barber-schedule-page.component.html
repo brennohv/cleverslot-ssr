@@ -1,0 +1,38 @@
+
+<div class='container'> 
+  <div class="row">
+    <div class="col-12">
+      <h2 class="main-header-page">{{ I18N_PREFFIX + 'title' | transloco}}</h2>
+    </div>
+  </div>
+    <div class='row'>
+      @defer (when isBusinessTimeLoaded()) {
+        <div class="col-12" [libSpinner]="isLoading()">
+          <mat-card class="mb-3">
+            <mat-card-content>
+              <full-calendar #calendar [events]="calendarEvents()" [options]='calendarOptionsComputed()'>
+                <ng-template #eventContent let-arg>
+                  <div 
+                    *ngIf="calendarEvents()?.length && arg.event.extendedProps" 
+                    class="ps-2">
+                    <app-calendar-event [calendarEvent]="arg.event"/>
+                  </div>
+                </ng-template>
+              </full-calendar>
+            </mat-card-content>
+          </mat-card>
+          
+        </div>
+      } @placeholder (minimum 500ms) {
+        <div style="height: 216px" class="d-flex align-items-center justify-content-center">
+          <lib-spinner />
+        </div>
+      }
+        
+    </div>
+    <app-feature-add-new-event
+      [date]="currentDate"  
+      (reloadCalendarEvents)="reloadEventList($event)"/>
+  </div>
+  
+  

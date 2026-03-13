@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="main-header-page">{{ I18N_PREFFIX + 'title' | transloco}}</h2>
+    </div>
+  </div>
+  <div class="row gx-md-5">
+    <div class="col-12 col-lg-3">
+      <div class="d-flex flex-column">
+        <app-barber-config-nav></app-barber-config-nav>
+      </div>
+    </div>
+    <div class="col-12 col-lg-9">
+      @switch (barberConfigView()) { 
+        @case (IBarberConfigViewEnum.PROFILE) {
+          <app-barber-config-profile></app-barber-config-profile>
+        } 
+        @case (IBarberConfigViewEnum.SERVICES) {
+          <app-barber-config-services />
+        }
+      }
+    </div>
+  </div>
+</div>

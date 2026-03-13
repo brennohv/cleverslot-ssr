@@ -1,0 +1,10 @@
+.mdc-list-item--activated {
+    .mdc-list-item__primary-text {
+        color: var(--c-secondary)!important;
+    }
+}
+
+.icon-option {
+    transform: translateY(5px);
+    margin-right: 4px;
+}

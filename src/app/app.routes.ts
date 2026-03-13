@@ -24,23 +24,23 @@ export const routes: Routes = [
       import('./admin/app/domains/landing-page/landing-page.routes').then(
         (m) => {
           return m.LANDING_PAGE_ROUTE;
-        }
+        },
       ),
     providers: [provideTranslocoScope('mfAdmin')],
   },
-  // {
-  //   path: ':barbershopSlug/barber',
-  //   component: LayoutComponent,
-  //   data: {
-  //     userType: UserType.PROFESSIONAL,
-  //   },
-  //   loadChildren: () =>
-  //     loadRemoteModule('mf-barber-barbershop', './routes').then((m) => {
-  //       return m.MF_BARBER_ROUTES;
-  //     }),
-  //   resolve: { isBarbershopActive: isBarbershopActiveResolve },
-  //   providers: [provideTranslocoScope('mfBarber')],
-  // },
+  {
+    path: ':barbershopSlug/barber',
+    component: LayoutComponent,
+    data: {
+      userType: UserType.PROFESSIONAL,
+    },
+    loadChildren: () =>
+      import('./barber/app/barber.routes').then((m) => {
+        return m.MF_BARBER_ROUTES;
+      }),
+    resolve: { isBarbershopActive: isBarbershopActiveResolve },
+    providers: [provideTranslocoScope('mfBarber')],
+  },
   {
     path: ':barbershopSlug/admin',
     component: LayoutComponent,

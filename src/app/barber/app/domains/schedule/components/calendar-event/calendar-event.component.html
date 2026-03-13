@@ -1,0 +1,26 @@
+<!-- Appointments -->
+@if (calendarEvent()?.extendedProps?.appointment) {
+    <b>{{ calendarEvent()?.extendedProps?.appointment!.startTime | timeFormat }} -</b>
+    <b>{{ calendarEvent()?.extendedProps?.appointment!.endTime | timeFormat }}</b>
+    <i>{{ calendarEvent()?.extendedProps?.appointment!.service.name }}</i>
+    @if (!!calendarEvent()?.extendedProps?.appointment?.client) {
+      <div class="d-flex flex-column">
+        <div class="d-flex align-items-center ">
+          <img class="user-icon rounded-circle" [src]="calendarEvent()?.extendedProps?.appointment?.client?.photo?.url | getImgUrl : '/assets/icons/avatar.svg'" alt="">
+          <span class="ms-2">{{ calendarEvent()?.extendedProps?.appointment!.client!.username }}</span>
+          <span class="ms-1">{{ calendarEvent()?.extendedProps?.appointment!.client!.telephone.internationalNumber }}</span>
+        </div>
+      </div>
+    } @else if(calendarEvent()?.extendedProps?.appointment?.nonRegisteredUser) {
+      <div class="d-flex align-items-center ">
+        <img class="user-icon unregistered rounded-circle" src="/assets/icons/unregistered-user.png" alt="">
+        <span class="ms-2">{{ calendarEvent()?.extendedProps?.appointment!.nonRegisteredUser!.name}}</span>
+        <span class="ms-1">{{ calendarEvent()?.extendedProps?.appointment!.nonRegisteredUser!.telephone.internationalNumber }}</span>
+      </div>
+    }
+  } @else if (calendarEvent()?.extendedProps?.blocker) {
+    <!-- Blockers -->
+    <b>{{ calendarEvent()?.extendedProps!.blocker!.startTime | timeFormat }} - </b>
+    <b>{{ calendarEvent()?.extendedProps!.blocker!.endTime | timeFormat }}</b>
+    <i>{{ calendarEvent()?.title }}</i>
+  }

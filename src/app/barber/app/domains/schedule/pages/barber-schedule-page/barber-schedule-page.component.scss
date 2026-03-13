@@ -1,0 +1,53 @@
+  ul {
+    margin: 0;
+    padding: 0 0 0 1.5em;
+  }
+  
+  li {
+    margin: 1.5em 0;
+    padding: 0;
+  }
+  
+  .fc {
+    /* the calendar root */
+    margin: 0 auto;
+  }
+  
+  :host::ng-deep {
+    .fc .fc-timegrid-slot {
+      border-bottom: 0px;
+      height: 85px !important;
+    }
+  
+    .fc-toolbar-title {
+      text-align: center;
+    }
+  
+    .fc-day-today {
+      background-color: inherit !important;
+    }
+  
+    .fc-header-toolbar {
+      .fc-toolbar-chunk {
+        &:first-of-type {
+          > div {
+            display: flex;
+            column-gap: 8px;
+  
+            .fc-datePickerButton-button {
+              &::after {
+                display: block;
+                content: "";
+                width: 24px;
+                height: 24px;
+                color: var(--c-ligth-primary-text);
+                background: transparent url("/assets/icons/calendar-event.svg")
+                  no-repeat;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
