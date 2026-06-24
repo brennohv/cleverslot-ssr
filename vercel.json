@@ -51,9 +51,7 @@
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": "dist/dynamic-shell-updated/**",
-      "memory": 1024,
-      "maxDuration": 10
+      "includeFiles": "dist/dynamic-shell-updated/**"
     }
   }
 }
