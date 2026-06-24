@@ -14,7 +14,7 @@ export const app = express();
 // Host/X-Forwarded-Host validation (SSRF protection).
 // See https://angular.dev/best-practices/security#preventing-server-side-request-forgery-ssrf
 const angularApp = new AngularNodeAppEngine({
-  allowedHosts: ['cleverslot-ssr.vercel.app', 'localhost'],
+  allowedHosts: ['cleverslot-ssr.vercel.app', '*.vercel.app', 'localhost'],
 });
 
 /**
