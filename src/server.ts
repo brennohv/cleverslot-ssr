@@ -11,10 +11,12 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 
 export const app = express();
 // Authorize Vercel production and preview deployment domains for SSR
-// Host/X-Forwarded-Host validation (SSRF protection).
+// Host/X-Forwarded-Host validation (SSRF protection), and trust the
+// X-Forwarded-* headers set by Vercel's reverse proxy.
 // See https://angular.dev/best-practices/security#preventing-server-side-request-forgery-ssrf
 const angularApp = new AngularNodeAppEngine({
   allowedHosts: ['cleverslot-ssr.vercel.app', '*.vercel.app', 'localhost'],
+  trustProxyHeaders: true,
 });
 
 /**
