@@ -1,4 +1,4 @@
 export const environment = {
-  baseUrl: 'https://cleverslot-ssr.vercel.app',
+  baseUrl: 'https://cleverslot-test.vercel.app',
   production: true,
 };

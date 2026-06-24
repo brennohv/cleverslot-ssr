@@ -9,6 +9,12 @@ import { join } from 'node:path';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
+// Allow SSR Host/X-Forwarded-Host validation (SSRF protection) to accept
+// Vercel production and preview deployment domains.
+// See https://angular.dev/best-practices/security#configuring-allowed-hosts
+process.env['NG_ALLOWED_HOSTS'] ??=
+  'cleverslot-ssr.vercel.app,*.vercel.app,localhost';
+
 export const app = express();
 const angularApp = new AngularNodeAppEngine();
 

@@ -26,7 +26,10 @@
           "builder": "@angular/build:application",
           "options": {
             "outputPath": "dist/dynamic-shell-updated",
-            "index": "src/indexFile.html",
+            "index": {
+              "input": "src/indexFile.html",
+              "output": "index.html"
+            },
             "polyfills": [],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
