@@ -9,14 +9,13 @@ import { join } from 'node:path';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
-// Allow SSR Host/X-Forwarded-Host validation (SSRF protection) to accept
-// Vercel production and preview deployment domains.
-// See https://angular.dev/best-practices/security#configuring-allowed-hosts
-process.env['NG_ALLOWED_HOSTS'] ??=
-  'cleverslot-ssr.vercel.app,*.vercel.app,localhost';
-
 export const app = express();
-const angularApp = new AngularNodeAppEngine();
+// Authorize Vercel production and preview deployment domains for SSR
+// Host/X-Forwarded-Host validation (SSRF protection).
+// See https://angular.dev/best-practices/security#preventing-server-side-request-forgery-ssrf
+const angularApp = new AngularNodeAppEngine({
+  allowedHosts: ['cleverslot-ssr.vercel.app', 'localhost'],
+});
 
 /**
  * Example Express Rest API endpoints can be defined here.
@@ -38,7 +37,7 @@ app.use(
     maxAge: '1y',
     index: false,
     redirect: false,
-  })
+  }),
 );
 
 /**
@@ -48,7 +47,7 @@ app.use((req, res, next) => {
   angularApp
     .handle(req)
     .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next()
+      response ? writeResponseToNodeResponse(response, res) : next(),
     )
     .catch(next);
 });
