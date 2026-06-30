@@ -1,22 +1,22 @@
 $ba-default: (
-  50: #eff1f5,  
-  100: #bcc5d4,  
-  200: #8f9db4,  
-  300: #617593,  
-  400: #40557c,  
-  500: #374151,  
-  600: #313b49,  
-  700: #2b3441,  
-  800: #252e39,  
-  900: #1c2330,  
-  A100: #d0d7e6,  
-  A200: #a3b5d4,  
-  A400: #6c89ba,  
-  A700: #5971a0,  
+  50: #eef1f6,
+  100: #d7dde9,
+  200: #b6c0d8,
+  300: #8da3c5,
+  400: #6c84b4,
+  500: #4d67a4,
+  600: #435b97,
+  700: #3b4f8a,
+  800: #33447c,
+  900: #25345d,
+  A100: #c7d1f2,
+  A200: #95a5eb,
+  A400: #5b79e1,
+  A700: #3f61d2,
   contrast: (
-    50: #222222,
-    100: #222222,
-    200: #222222,
+    50: #161c26,
+    100: #161c26,
+    200: #161c26,
     300: #ffffff,
     400: #ffffff,
     500: #ffffff,
@@ -24,47 +24,90 @@ $ba-default: (
     700: #ffffff,
     800: #ffffff,
     900: #ffffff,
-    A100: #222222,
-    A200: #222222,
+    A100: #161c26,
+    A200: #161c26,
     A400: #ffffff,
     A700: #ffffff,
-  )
+  ),
 );
 
 $ba-secondary: (
-  50: #fff1e4,  
-  100: #ffdcb5,  
-  200: #ffc482,  
-  300: #ffac4f,  
-  400: #ff9632,  
-  500: #f4a261,  
-  600: #ec8c1d,  
-  700: #e57f17,  
-  800: #de7111,  
-  900: #d7620a,  
-  A100: #ffffff,  
-  A200: #ffe0b2,  
-  A400: #ffab40,  
-  A700: #ff9100,  
+  50: #fdf7ed,
+  100: #f7e6c5,
+  200: #efd0a0,
+  300: #e5b074,
+  400: #d79750,
+  500: #c07a31,
+  600: #a86329,
+  700: #8f4f23,
+  800: #7a411d,
+  900: #5d3115,
+  A100: #fff1de,
+  A200: #ffd2a3,
+  A400: #ffb160,
+  A700: #ff9b33,
   contrast: (
-    50: #222222,
-    100: #222222,
-    200: #222222,
-    300: #222222,
-    400: #222222,
-    500: #222222,
-    600: #222222,
-    700: #222222,
-    800: #222222,
+    50: #161c26,
+    100: #161c26,
+    200: #161c26,
+    300: #161c26,
+    400: #161c26,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
     900: #ffffff,
-    A100: #222222,
-    A200: #222222,
-    A400: #222222,
-    A700: #222222,
-  )
+    A100: #161c26,
+    A200: #161c26,
+    A400: #161c26,
+    A700: #161c26,
+  ),
 );
 
-//Overwrite bootstrap 
-$primary: #313b49 !default;
-$secondary: #f4a261 !default;
-$body-bg: #eff1f5; 
+$ba-accent: (
+  50: #ffe8e9,
+  100: #f5b4b8,
+  200: #ee838d,
+  300: #e64c55,
+  400: #d9343f,
+  500: #be232f,
+  600: #a01d2a,
+  700: #811825,
+  800: #6c1422,
+  900: #54111f,
+  A100: #ffd8db,
+  A200: #ffafb4,
+  A400: #ff7f82,
+  A700: #ff6268,
+  contrast: (
+    50: #161c26,
+    100: #161c26,
+    200: #161c26,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #161c26,
+    A200: #161c26,
+    A400: #161c26,
+    A700: #161c26,
+  ),
+);
+
+//Overwrite bootstrap
+$primary: #25345d !default;
+$secondary: #c07a31 !default;
+$body-bg: #f6f7f9 !default;
+$body-color: #19202d !default;
+$danger: #be232f !default;
+$info: #5470d9 !default;
+
+// Additional barbershop theme colors
+$accent-dark: #1f2a3b;
+$accent-gold: #c07a31;
+$accent-red: #be232f;
+$success: #2d6a4f;
+$warning: #d19230;

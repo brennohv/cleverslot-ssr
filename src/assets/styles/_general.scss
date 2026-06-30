@@ -1,10 +1,20 @@
 @import "./pallete.scss";
 
 :root {
-  --c-primary: #313b49;
-  --c-secondary: #f4a261;
-  --c-dark-primary-text: #222222;
+  --c-primary: #25345d;
+  --c-secondary: #c07a31;
+  --c-accent: #be232f;
+  --c-bg: #f2f5fb;
+  --c-surface: #ffffff;
+  --c-dark-primary-text: #19202d;
+  --c-light-primary-text: #ffffff;
   --c-ligth-primary-text: #ffffff;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f7f9fd 0%, #eff4fb 45%, #f6f8fb 100%);
+  color: var(--c-dark-primary-text);
 }
 
 .c-primary {
@@ -17,6 +27,18 @@
 
 .c-ligth-primary-text {
   color: var(--c-ligth-primary-text);
+}
+
+.c-accent {
+  color: var(--c-accent);
+}
+
+.c-bg {
+  background-color: var(--c-bg);
+}
+
+.c-light-primary-text {
+  color: var(--c-light-primary-text);
 }
 
 .cursor-pointer {
@@ -48,8 +70,11 @@ a {
   transition-duration: 350ms;
 }
 
-h4, h3, h2, h1 {
-  font-family: "Oswald", sans-serif!important;
+h4,
+h3,
+h2,
+h1 {
+  font-family: "Oswald", sans-serif !important;
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
@@ -61,11 +86,10 @@ h4, h3, h2, h1 {
   &:after {
     position: absolute;
     display: block;
-    content: '';
+    content: "";
     width: 5rem;
     border-bottom: 0.5rem solid var(--c-secondary);
     bottom: -12px;
-    
   }
 }
 
